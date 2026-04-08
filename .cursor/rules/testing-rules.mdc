@@ -1,0 +1,14 @@
+---
+description: Testing conventions for unit, integration, and component tests
+globs: "**/*.{test,spec}.{ts,tsx,js,jsx}"
+alwaysApply: false
+---
+
+# Testing Rules
+
+- Write tests around behavior and contracts, not implementation details.
+- Prefer deterministic tests; avoid time/network randomness without controlled mocks.
+- Keep test setup minimal and close to the subject under test.
+- Cover success path, validation errors, and permission/error boundaries.
+- For UI tests, assert accessible roles/text and user-visible outcomes.
+- Keep integration tests for cross-module flows and unit tests for pure logic.

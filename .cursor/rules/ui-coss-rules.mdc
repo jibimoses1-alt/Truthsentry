@@ -1,0 +1,14 @@
+---
+description: COSS UI usage and composition rules for shared UI package
+globs: "{packages/ui/**,apps/**/components/**}/**/*.{ts,tsx,css}"
+alwaysApply: false
+---
+
+# COSS UI Rules
+
+- Use COSS primitives and composition patterns from generated files before creating custom wrappers.
+- Keep imports consistent with package exports (prefer `@afalambe/ui` for consumers).
+- Preserve trigger/content hierarchies for overlay primitives (Dialog, Select, Popover, Tooltip, Menu).
+- Keep accessibility props and semantic control types explicit (`button`, `input`, labels, aria attributes).
+- Avoid API invention; follow generated component signatures and COSS docs.
+- Import `@afalambe/ui/styles.css` once at app entry/layout before consuming UI components.

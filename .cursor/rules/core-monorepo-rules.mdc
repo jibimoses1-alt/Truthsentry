@@ -1,0 +1,15 @@
+---
+description: Core monorepo coding and workspace conventions
+alwaysApply: true
+---
+
+# Core Monorepo Rules
+
+- Use pnpm workspace commands and prefer `pnpm --filter` for package-scoped tasks.
+- Keep changes small, focused, and consistent with existing package boundaries.
+- Prefer TypeScript, functional patterns, and named exports.
+- Use kebab-case for directories and clear, descriptive file names.
+- Do not add emojis in code, docs, comments, commit messages, or generated content.
+- Do not bypass lint/type checks when making code changes.
+- Avoid introducing framework-specific assumptions into shared packages.
+- Keep dependency additions minimal and place them in the correct package scope.

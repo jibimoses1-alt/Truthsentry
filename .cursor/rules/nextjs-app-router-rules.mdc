@@ -1,0 +1,14 @@
+---
+description: Next.js App Router and React server-first patterns
+globs: "apps/**/*.{ts,tsx,js,jsx,mdx}"
+alwaysApply: false
+---
+
+# Next.js App Router Rules
+
+- Prefer Server Components by default; use `use client` only when required by browser APIs or local interactivity.
+- Keep data fetching on the server when possible; avoid client-side fetches for initial page state.
+- Use route-level `loading` and `error` boundaries for async and failure states.
+- Prefer Server Actions (with input validation) for mutations over ad hoc API calls.
+- Keep layouts/pages focused; move reusable logic to package-level modules.
+- Use Suspense for async UI boundaries and avoid blocking the entire route tree.

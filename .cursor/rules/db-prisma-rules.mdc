@@ -1,0 +1,14 @@
+---
+description: Prisma schema, migration, and query safety conventions
+globs: "packages/prisma/**/*.{prisma,ts,sql}"
+alwaysApply: false
+---
+
+# Prisma Rules
+
+- Keep schema names and relation fields explicit and consistent across models.
+- Prefer additive, reversible migrations; avoid destructive migration patterns unless explicitly approved.
+- Validate nullable and optional behavior at the service boundary, not only at query call sites.
+- Select only required fields in queries to reduce payload size and avoid over-fetching.
+- Keep transactional logic explicit for multi-step writes.
+- Never expose raw database errors directly to end users.

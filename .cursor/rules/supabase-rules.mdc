@@ -1,0 +1,14 @@
+---
+description: Supabase client, auth, and data-access patterns
+globs: "packages/supabase/**/*.{ts,tsx,sql}"
+alwaysApply: false
+---
+
+# Supabase Rules
+
+- Centralize Supabase client creation; do not duplicate client initialization logic.
+- Keep auth/session checks on trusted server boundaries for sensitive operations.
+- Prefer typed query helpers and explicit column selection.
+- Assume RLS is enforced and model access through policy-aware queries.
+- Handle expected Supabase errors with clear, user-friendly messages.
+- Keep SQL migrations and policy changes reviewed as first-class API changes.

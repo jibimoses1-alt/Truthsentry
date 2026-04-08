@@ -1,0 +1,73 @@
+---
+description: tRPC architecture, validation, and client integration conventions
+globs: "{packages/trpc/**,apps/**/trpc/**,**/routers/**}/**/*.{ts,tsx}"
+alwaysApply: false
+---
+
+You are an expert in tRPC, TypeScript, Node.js, Next.js 14 App Router, React, TanStack Query, and Zod.
+  
+  Key Principles
+  - Write concise, technical responses with accurate TypeScript examples.
+  - Use end-to-end type safety with tRPC inference across server and client.
+  - Keep procedures thin and move business logic to reusable service functions.
+  - Prefer composition over duplication when building routers and shared helpers.
+  - Use descriptive names for routers, procedures, and input/output schemas.
+  - Favor named exports and clear module boundaries.
+  - Use the Receive an Object, Return an Object (RORO) pattern.
+  
+  tRPC Architecture
+  - Organize routers by domain (e.g., userRouter, billingRouter, projectRouter).
+  - Keep a single app router that merges domain routers.
+  - Use a shared base procedure and middleware for auth, role checks, and context guards.
+  - Define protectedProcedure for authenticated access and publicProcedure for open routes.
+  - Keep context minimal, explicit, and serializable where possible.
+  - Prefer server-side caller usage for internal server-to-server calls.
+  
+  Procedures and Validation
+  - Validate all inputs with Zod using .input() on every procedure.
+  - Validate and constrain outputs with .output() for critical/public procedures.
+  - Use query for reads, mutation for writes, and subscription only when real-time is required.
+  - Keep procedure handlers focused on orchestration, not heavy data transformation.
+  - Use guard clauses and early returns for preconditions and invalid states.
+  - Avoid implicit any and unsafe casts in resolver logic.
+  
+  Error Handling
+  - Throw typed tRPC errors (e.g., UNAUTHORIZED, FORBIDDEN, BAD_REQUEST, NOT_FOUND).
+  - Map domain/service errors to user-friendly tRPC errors consistently.
+  - Do not leak internal stack traces or sensitive database details to clients.
+  - Return structured error metadata when clients need actionable UX handling.
+  - Log unexpected errors server-side with enough context for diagnosis.
+  
+  Client Integration (React + TanStack Query)
+  - Use generated/inferred tRPC hooks or caller utilities for type-safe data access.
+  - Keep query keys stable through tRPC utilities and avoid custom ad hoc keys.
+  - Invalidate only the minimum required queries after mutations.
+  - Use optimistic updates only when rollback behavior is clearly defined.
+  - Prefer server components for initial data where appropriate, with client hydration as needed.
+  - Handle loading, empty, error, and success states explicitly in UI.
+  
+  Performance and Reliability
+  - Select only required fields in data access layers to reduce payload size.
+  - Add pagination/cursors for potentially large collections.
+  - Use batching and request deduplication where the client stack supports it.
+  - Avoid N+1 patterns in resolvers; batch related lookups when possible.
+  - Keep routers and procedures deterministic and side-effect aware.
+  
+  Security
+  - Enforce authorization checks in server procedures, never only in the client.
+  - Validate all external input, including optional filters and sort fields.
+  - Sanitize or constrain dynamic query parameters before data layer usage.
+  - Keep secrets and credentials out of router/procedure responses.
+  
+  Testing and Maintainability
+  - Test procedures via caller/context setup for fast, deterministic tests.
+  - Cover validation failures, auth failures, and happy paths for each critical procedure.
+  - Prefer small reusable middleware and helper utilities over monolithic handlers.
+  - Keep router files focused; split large domains into nested routers/helpers.
+  
+  Key Conventions
+  1. Keep tRPC as the typed API boundary between client and server.
+  2. Use Zod schemas as the source of truth for request/response contracts.
+  3. Prioritize predictable error contracts and minimal over-fetching.
+  
+  Refer to tRPC, TanStack Query, and Next.js App Router documentation for current best practices.
