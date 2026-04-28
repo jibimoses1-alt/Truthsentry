@@ -1,0 +1,135 @@
+generator client {
+  provider   = "prisma-client-js"
+  engineType = "binary"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+enum ClaimStatus {
+  OPEN
+  PROCESSING
+  RESOLVED
+  FAILED
+}
+
+enum MessageRole {
+  USER
+  ASSISTANT
+  SYSTEM
+}
+
+model User {
+  id                      String                   @id @default(cuid())
+  email                   String                   @unique
+  passwordHash            String
+  role                    UserRole                 @default(USER)
+  emailVerifiedAt         DateTime?
+  createdAt               DateTime                 @default(now())
+  updatedAt               DateTime                 @updatedAt
+  sessions                Session[]
+  claims                  Claim[]
+  emailVerificationTokens EmailVerificationToken[]
+  passwordResetTokens     PasswordResetToken[]
+  emailDeliveries         EmailDelivery[]
+}
+
+model Session {
+  id         String   @id @default(cuid())
+  tokenHash  String   @unique
+  userId     String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, expiresAt])
+}
+
+model Claim {
+  id              String         @id @default(cuid())
+  title           String?
+  status          ClaimStatus    @default(OPEN)
+  createdByUserId String
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  user            User           @relation(fields: [createdByUserId], references: [id], onDelete: Cascade)
+  messages        ClaimMessage[]
+  emailDeliveries EmailDelivery[]
+
+  @@index([createdByUserId, updatedAt])
+}
+
+model ClaimMessage {
+  id           String      @id @default(cuid())
+  claimId      String
+  role         MessageRole
+  content      String
+  attachments  Json?
+  clientReqId  String?
+  createdAt    DateTime    @default(now())
+  claim        Claim        @relation(fields: [claimId], references: [id], onDelete: Cascade)
+
+  @@index([claimId, createdAt])
+  @@unique([claimId, clientReqId])
+}
+
+model EmailVerificationToken {
+  id        String   @id @default(cuid())
+  userId    String
+  tokenHash String   @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, expiresAt])
+}
+
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  userId    String
+  tokenHash String   @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, expiresAt])
+}
+
+model EmailDelivery {
+  id                String   @id @default(cuid())
+  userId            String
+  claimId           String?
+  templateKey       String
+  idempotencyKey    String   @unique
+  providerMessageId String?
+  status            String
+  errorCode         String?
+  attemptCount      Int      @default(1)
+  lastAttemptAt     DateTime @default(now())
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  claim             Claim?   @relation(fields: [claimId], references: [id], onDelete: SetNull)
+
+  @@index([userId, createdAt])
+  @@index([claimId, createdAt])
+}
+
+model ResendWebhookEvent {
+  id          String   @id @default(cuid())
+  eventId     String   @unique
+  eventType   String
+  receivedAt  DateTime @default(now())
+  payloadHash String
+
+  @@index([eventType, receivedAt])
+}
