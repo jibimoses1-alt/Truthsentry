@@ -12,13 +12,19 @@
         "typecheck": "tsc --noEmit",
         "test": "node --test",
         "prisma": "prisma",
-        "db:studio": "prisma studio"
+        "db:studio": "prisma studio",
+        "db:generate": "prisma generate",
+        "db:migrate": "prisma migrate dev"
     },
     "devDependencies": {
+        "@types/node": "^22.10.2",
         "prisma": "^7.7.0",
         "typescript": "^5.9.2"
     },
     "dependencies": {
-        "@prisma/client": "^7.7.0"
+        "@prisma/adapter-pg": "^7.7.0",
+        "@prisma/client": "^7.7.0",
+        "dotenv": "^17.2.3",
+        "pg": "^8.16.3"
     }
 }
