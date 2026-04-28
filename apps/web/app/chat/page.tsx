@@ -5,7 +5,7 @@ import { ChatPageClient } from '@/components/chat-page-client'
 
 export const metadata: Metadata = {
     title: 'Chat',
-    description: 'Afalambe claims assistant chat (preview layout).',
+    description: 'Assistant de verification des dossiers Afalambe.',
     robots: { index: false, follow: false },
 }
 

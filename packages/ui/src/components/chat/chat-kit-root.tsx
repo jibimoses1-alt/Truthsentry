@@ -9,11 +9,11 @@ export type ChatKitRootProps = {
 
 /**
  * Opt-in root for ChatGPT-style kit tokens (`chat-gpt-kit.css`).
- * Sets `data-ui-kit="chatgpt"` and `dark` for descendant `dark:` Tailwind usage.
+ * Sets `data-ui-kit="chatgpt"`. Use `html` theme from next-themes for `dark:`; palette stays on `--chat-*` tokens.
  */
 export function ChatKitRoot({ children, className }: ChatKitRootProps): React.ReactElement {
     return (
-        <div data-ui-kit="chatgpt" className={cn('dark min-h-dvh w-full bg-[var(--chat-canvas)]', className)}>
+        <div data-ui-kit="chatgpt" className={cn('min-h-dvh w-full bg-[var(--chat-canvas)]', className)}>
             {children}
         </div>
     )

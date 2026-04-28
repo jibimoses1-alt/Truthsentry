@@ -159,7 +159,7 @@ function AnchoredToasts(): React.ReactElement {
     return (
         <Toast.Portal data-slot="toast-portal-anchored">
             <Toast.Viewport
-                className="outline-none"
+                className="pointer-events-none outline-none"
                 data-slot="toast-viewport-anchored"
             >
                 {toasts.map((toast) => {
@@ -177,7 +177,7 @@ function AnchoredToasts(): React.ReactElement {
 
                     return (
                         <Toast.Positioner
-                            className="z-50 max-w-[min(--spacing(64),var(--available-width))]"
+                            className="pointer-events-auto z-50 max-w-[min(--spacing(64),var(--available-width))]"
                             data-slot="toast-positioner"
                             key={toast.id}
                             sideOffset={positionerProps.sideOffset ?? 4}

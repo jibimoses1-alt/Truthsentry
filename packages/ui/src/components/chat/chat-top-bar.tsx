@@ -5,7 +5,7 @@ import { Button } from '../ui/button'
 import { cn } from '../../lib/utils'
 
 export type ChatTopBarProps = {
-    title: string
+    title?: string
     subtitle?: string
     /** Optional wordmark or icon URL (served from app `public/`). */
     brandLogoSrc?: string
@@ -86,7 +86,7 @@ export function ChatTopBar({
                     variant="ghost"
                     size="icon"
                     className="text-[var(--chat-control-icon)] hover:bg-[var(--chat-surface-hover)] hover:text-[var(--chat-control-icon-hover)]"
-                    aria-label="More options"
+                    aria-label="Plus d'options"
                 >
                     <MoreHorizontal className="size-4" />
                 </Button>
