@@ -37,11 +37,11 @@ export function LandingFeatures(): ReactElement {
             <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:max-w-5xl">
                 <div>
                     <h2 className="text-balance text-3xl font-medium tracking-tight text-[var(--lp-fg)] sm:text-4xl">
-                        Built for trustworthy verification
+                        Concu pour une verification fiable
                     </h2>
                     <p className="mt-4 max-w-2xl text-balance text-[var(--lp-fg-muted)] sm:text-lg">
-                        Curated knowledge, clear confidence signals, and human review when automation
-                        reaches its limits.
+                        Des sources selectionnees, des signaux de confiance clairs, et une verification
+                        humaine quand l'automatisation atteint ses limites.
                     </p>
                 </div>
                 <div className="mt-12 grid gap-3 *:p-6 @xl:grid-cols-2">
@@ -52,10 +52,10 @@ export function LandingFeatures(): ReactElement {
                         )}
                     >
                         <div className="space-y-2">
-                            <h3 className="font-medium text-[var(--lp-fg)]">Multilingual intake</h3>
+                            <h3 className="font-medium text-[var(--lp-fg)]">Saisie multilingue</h3>
                             <p className="text-sm text-[var(--lp-fg-muted)]">
-                                Chat and forms accept the languages your community uses, including Fula
-                                and Peul.
+                                Le chat et les formulaires acceptent les langues de votre communaute,
+                                y compris le fula et le peul.
                             </p>
                         </div>
                         <div
@@ -98,10 +98,10 @@ export function LandingFeatures(): ReactElement {
                         )}
                     >
                         <div className="space-y-2">
-                            <h3 className="font-medium text-[var(--lp-fg)]">Clear confidence</h3>
+                            <h3 className="font-medium text-[var(--lp-fg)]">Confiance explicite</h3>
                             <p className="text-sm text-[var(--lp-fg-muted)]">
-                                When a claim matches curated material you see a direct answer; otherwise
-                                uncertainty is explicit.
+                                Quand un dossier correspond a des sources selectionnees, vous obtenez
+                                une reponse directe ; sinon, l'incertitude est explicite.
                             </p>
                         </div>
                         <div aria-hidden className="relative h-44 translate-y-6">
@@ -129,10 +129,10 @@ export function LandingFeatures(): ReactElement {
                         )}
                     >
                         <div className="space-y-2">
-                            <h3 className="font-medium text-[var(--lp-fg)]">Transparent limits</h3>
+                            <h3 className="font-medium text-[var(--lp-fg)]">Limites transparentes</h3>
                             <p className="mt-2 text-sm text-[var(--lp-fg-muted)]">
-                                Policies and source scope are visible so teams know what can be verified
-                                automatically.
+                                Les politiques et le perimetre des sources sont visibles pour que les
+                                equipes sachent ce qui peut etre verifie automatiquement.
                             </p>
                         </div>
                         <div
@@ -156,10 +156,10 @@ export function LandingFeatures(): ReactElement {
                         )}
                     >
                         <div className="space-y-2">
-                            <h3 className="font-medium text-[var(--lp-fg)]">Human oversight</h3>
+                            <h3 className="font-medium text-[var(--lp-fg)]">Supervision humaine</h3>
                             <p className="text-sm text-[var(--lp-fg-muted)]">
-                                Escalations keep full context for reviewers when the model cannot safely
-                                confirm.
+                                Les escalades conservent tout le contexte pour les relecteurs quand le
+                                modele ne peut pas confirmer avec certitude.
                             </p>
                         </div>
                         <div className="pointer-events-none relative -ml-7 flex size-44 items-center justify-center pt-5">

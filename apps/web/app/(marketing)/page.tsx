@@ -33,62 +33,62 @@ export const metadata: Metadata = {
 
 const steps = [
     {
-        title: 'Sign in',
-        description: 'Create an account or return with your email. Verification keeps the queue trustworthy.',
+        title: 'Connexion',
+        description: "Creez un compte ou revenez avec votre e-mail. La verification maintient une file d'attente fiable.",
     },
     {
-        title: 'Describe your claim in chat',
-        description: 'Use any language you need, including Fula and Peul. The assistant reads your full context.',
+        title: 'Decrivez votre dossier dans le chat',
+        description: "Utilisez la langue de votre choix, y compris le fula et le peul. L'assistant lit tout votre contexte.",
     },
     {
-        title: 'Get an outcome or a human handoff',
-        description: 'High-confidence matches produce a clear answer. Otherwise you join the human review queue.',
+        title: 'Recevez un resultat ou un relais humain',
+        description: "Les correspondances a forte confiance donnent une reponse claire. Sinon, votre dossier passe en verification humaine.",
     },
 ]
 
 const bullets = [
     {
-        title: 'Curated knowledge',
-        body: 'Responses are grounded in approved sources and policies, not the open web.',
+        title: 'Connaissances selectionnees',
+        body: "Les reponses s'appuient sur des sources et politiques validees, pas sur le web ouvert.",
     },
     {
-        title: 'Confidence you can see',
-        body: 'We show when the model is sure, when it is not, and when humans must decide.',
+        title: 'Confiance visible',
+        body: "Nous montrons quand le modele est confiant, quand il ne l'est pas, et quand une decision humaine est requise.",
     },
     {
-        title: 'Human escalation',
-        body: 'Sensitive or unmatched claims are queued for reviewers with full context preserved.',
+        title: 'Escalade humaine',
+        body: 'Les dossiers sensibles ou sans correspondance sont envoyes aux relecteurs avec tout le contexte conserve.',
     },
     {
-        title: 'Privacy-aware',
-        body: 'Encryption in transit, minimal data in prompts, and retention rules documented for operators.',
+        title: 'Respect de la confidentialite',
+        body: 'Chiffrement en transit, donnees minimales dans les prompts et regles de retention documentees pour les operateurs.',
     },
 ]
 
 const faqItems = [
     {
-        question: 'Which languages are supported?',
-        answer: 'The product chrome is available in French and English. Claim text can be written in Unicode, including Fula and Peul scripts.',
+        question: 'Quelles langues sont prises en charge ?',
+        answer: "L'interface produit est disponible en francais et en anglais. Le texte des dossiers peut etre saisi en Unicode, y compris en fula et en peul.",
     },
     {
-        question: 'Is this legal advice?',
-        answer: 'No. Afalambè assists with verification against curated material. Operators remain responsible for official determinations.',
+        question: 'Est-ce un conseil juridique ?',
+        answer: 'Non. Afalambè aide a verifier avec des sources selectionnees. Les operateurs restent responsables des decisions officielles.',
     },
     {
-        question: 'What happens if the AI is unsure?',
-        answer: 'Your claim is placed in a human queue. You receive status updates by email when templates are enabled.',
+        question: "Que se passe-t-il si l'IA n'est pas certaine ?",
+        answer: 'Votre dossier est place en file de verification humaine. Vous recevez des mises a jour par e-mail lorsque les templates sont actives.',
     },
     {
-        question: 'Who can see my claim?',
-        answer: 'You, automated systems involved in processing, and authorised reviewers for the queue. Exact roles are defined in programme policy.',
+        question: 'Qui peut voir mon dossier ?',
+        answer: "Vous, les systemes automatises impliques dans le traitement, et les relecteurs autorises. Les roles exacts sont definis par la politique du programme.",
     },
     {
-        question: 'Can I use this without signing in?',
-        answer: 'The public landing and this chat preview are available. Submitting real claims requires an account per the API specification.',
+        question: 'Puis-je utiliser cela sans me connecter ?',
+        answer: "La page publique et cet apercu du chat sont accessibles. L'envoi de dossiers reels necessite un compte selon la specification API.",
     },
     {
-        question: 'Where does the chat UI live?',
-        answer: 'Use the Chat link for the full assistant shell. The authenticated product will follow the same layout tokens.',
+        question: "Ou se trouve l'interface de chat ?",
+        answer: "Utilisez le lien Chat pour l'interface complete de l'assistant. Le produit authentifie suivra les memes tokens de mise en page.",
     },
 ]
 
@@ -125,20 +125,20 @@ export default function LandingPage(): ReactElement {
                 headerActions={<ThemeToggle />}
                 signInHref="/sign-in"
                 primaryCtaHref="/sign-up"
-                primaryCtaLabel="Get started"
+                primaryCtaLabel="Commencer"
             />
             <LandingHero
-                title="Verify claims with clear limits"
+                title="Verifier les dossiers avec des limites claires"
                 subtitle={siteDefaultDescription}
                 primaryHref="/sign-up"
-                primaryLabel="Start in chat"
+                primaryLabel="Demarrer dans le chat"
                 secondaryHref="/sign-in"
-                secondaryLabel="Sign in"
+                secondaryLabel="Connexion"
             />
             <LandingFeatures />
-            <LandingSteps id="how" heading="How it works" steps={steps} />
-            <LandingBullets id="why" heading="Why Afalambè" items={bullets} />
-            <LandingFaq id="faq" heading="Frequently asked questions" items={faqItems} />
+            <LandingSteps id="how" heading="Fonctionnement" steps={steps} />
+            <LandingBullets id="why" heading="Pourquoi Afalambè" items={bullets} />
+            <LandingFaq id="faq" heading="Questions frequentes" items={faqItems} />
             <LandingSiteFooter
                 brand={siteName}
                 brandLogoSrc={siteLogoPath}

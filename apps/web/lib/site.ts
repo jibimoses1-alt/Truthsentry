@@ -6,23 +6,23 @@ export const siteIconPath = '/@afalambe-icon.png'
 /** Horizontal wordmark for headers and auth (light surfaces). */
 export const siteLogoPath = '/@afalambe-logo.png'
 
-/** Wordmark for dark mode (`public/@Afalambè.png`). */
-export const siteLogoDarkPath = '/@Afalambè.png'
+/** Wordmark for dark mode (`public/@afalambe-logo-dark.png`). */
+export const siteLogoDarkPath = '/@afalambe-logo-dark.png'
 
 /** Marketing landing hero (`public/@afalambe-hero.png`). */
 export const siteHeroImagePath = '/@afalambe-hero.png'
 
 export const siteDefaultDescription =
-    'Submit claims in your language, including Fula and Peul. When the system can verify against curated knowledge, you get a clear answer; otherwise your claim is queued for human review.'
+    'Soumettez des dossiers dans votre langue, y compris le fula et le peul. Quand le systeme peut verifier avec des sources selectionnees, vous obtenez une reponse claire ; sinon votre dossier est place en file d’attente pour verification humaine.'
 
 export const siteKeywords = [
-    'fact-checking',
-    'claims verification',
+    'verification des faits',
+    'verification des dossiers',
     'Fula',
     'Peul',
-    'AI verification',
-    'human review',
-    'multilingual',
+    'verification par IA',
+    'verification humaine',
+    'multilingue',
 ]
 
 /** Browser chrome / PWA theme (brand red from Afalambe identity). */
@@ -54,7 +54,7 @@ export function buildJsonLd(overrides?: {
         url: overrides?.url ?? base,
         applicationCategory: 'UtilitiesApplication',
         operatingSystem: 'Any',
-        inLanguage: ['en', 'fr'],
+        inLanguage: ['fr', 'en'],
         offers: {
             '@type': 'Offer',
             price: '0',

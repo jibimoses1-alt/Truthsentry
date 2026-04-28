@@ -27,8 +27,8 @@ export type LandingSiteHeaderProps = {
 }
 
 const defaultNav: LandingNavItem[] = [
-    { href: '#how', label: 'How it works' },
-    { href: '#why', label: 'Why Afalambè' },
+    { href: '#how', label: 'Fonctionnement' },
+    { href: '#why', label: 'Pourquoi Afalambè' },
     { href: '#faq', label: 'FAQ' },
 ]
 
@@ -48,7 +48,7 @@ export function LandingSiteHeader({
     return (
         <header
             className={cn(
-                'sticky top-0 z-50 border-b border-[var(--lp-border)] bg-[var(--lp-bg-elevated)]/85 backdrop-blur-md',
+                'sticky top-0 z-[70] border-b border-[var(--lp-border)] bg-[var(--lp-bg-elevated)]/85 backdrop-blur-md',
                 className,
             )}
         >
@@ -94,7 +94,7 @@ export function LandingSiteHeader({
                     </a>
                     <nav
                         className="hidden min-w-0 items-center gap-4 md:flex lg:gap-5"
-                        aria-label="Primary"
+                        aria-label="Navigation principale"
                     >
                         {navItems.map((item) => (
                             <a
@@ -116,7 +116,7 @@ export function LandingSiteHeader({
                 <div className="flex shrink-0 items-center gap-2">
                     {headerActions}
                     <Button variant="ghost" size="sm" render={<a href={signInHref} />} className="hidden sm:inline-flex">
-                        Sign in
+                        Connexion
                     </Button>
                     <Button
                         size="sm"
