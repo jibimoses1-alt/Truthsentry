@@ -1,5 +1,5 @@
 {
-    "name": "@afalambe/configs-eslint",
+    "name": "@truthsentry/configs-eslint",
     "version": "0.0.0",
     "type": "module",
     "private": true,

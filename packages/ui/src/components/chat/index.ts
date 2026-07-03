@@ -6,6 +6,7 @@ export * from './chat-kit-root';
 export * from './chat-message-actions';
 export * from './chat-message-bubble';
 export * from './chat-message-list';
+export * from './chat-assistant-icon';
 export * from './chat-message-row';
 export * from './chat-sidebar';
 export * from './chat-thread-divider';

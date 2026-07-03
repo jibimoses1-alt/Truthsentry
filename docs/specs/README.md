@@ -4,7 +4,7 @@ Use specs to describe medium and large changes before implementation.
 
 ## Program-level SDD specs
 
-For **Afalambè / Safe Voices**, the living product and vertical specs live under [`/specs`](../../specs/README.md) (repository root). That folder follows **spec-driven development** (see [Zencoder: Spec-driven development guide](https://docs.zencoder.ai/user-guides/tutorials/spec-driven-development-guide)): specify first, then plan, task, and implement. Use `docs/specs/template.md` below for smaller or cross-cutting changes that do not warrant a full `/specs` document yet.
+For **TruthSentry**, the living product and vertical specs live under [`/specs`](../../specs/README.md) (repository root). That folder follows **spec-driven development** (see [Zencoder: Spec-driven development guide](https://docs.zencoder.ai/user-guides/tutorials/spec-driven-development-guide)): specify first, then plan, task, and implement. Use `docs/specs/template.md` below for smaller or cross-cutting changes that do not warrant a full `/specs` document yet.
 
 ## When to write a spec
 

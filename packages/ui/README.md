@@ -1,18 +1,18 @@
-# @afalambe/ui
+# @truthsentry/ui
 
 Reusable UI package for shared components and styles.
 
 ## Usage
 
 - Import styles first in your app entry/layout:
-    - `import "@afalambe/ui/styles.css"`
+    - `import "@truthsentry/ui/styles.css"`
 - Then import components and utilities:
-    - `import { Button, Dialog, Select, Form, Toast, cn } from "@afalambe/ui"`
+    - `import { Button, Dialog, Select, Form, Toast, cn } from "@truthsentry/ui"`
 
 ## Commands
 
-- `pnpm --filter @afalambe/ui typecheck`
-- `pnpm --filter @afalambe/ui lint`
+- `pnpm --filter @truthsentry/ui typecheck`
+- `pnpm --filter @truthsentry/ui lint`
 
 ## Notes
 

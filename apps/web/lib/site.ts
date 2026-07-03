@@ -1,64 +1,76 @@
-export const siteName = 'Afalambe'
+import { getTranslations } from 'next-intl/server';
 
-/** Served from `public/` (literal `@` in filename). */
-export const siteIconPath = '/@afalambe-icon.png'
+import type { AppLocale } from '@/i18n/routing';
 
-/** Horizontal wordmark for headers and auth (light surfaces). */
-export const siteLogoPath = '/@afalambe-logo.png'
+export const siteName = 'TruthSentry';
 
-/** Wordmark for dark mode (`public/@afalambe-logo-dark.png`). */
-export const siteLogoDarkPath = '/@afalambe-logo-dark.png'
+/** Square icon for favicon and PWA (`public/truthsentry-icon.png`). */
+export const siteIconPath = '/truthsentry-icon.png';
 
-/** Marketing landing hero (`public/@afalambe-hero.png`). */
-export const siteHeroImagePath = '/@afalambe-hero.png'
+/** Horizontal wordmark for light backgrounds (`public/truthsentry.png`). */
+export const siteLogoPath = '/truthsentry.png';
 
+/** White wordmark for dark backgrounds (`public/truthsentry-white.png`). */
+export const siteLogoOnDarkPath = '/truthsentry-white.png';
+
+/** Browser chrome / PWA theme (brand teal). */
+export const siteThemeColor = '#42acb5';
+
+/** Fallback description for root-level metadata routes (manifest, OG image). */
 export const siteDefaultDescription =
-    'Soumettez des dossiers dans votre langue, y compris le fula et le peul. Quand le systeme peut verifier avec des sources selectionnees, vous obtenez une reponse claire ; sinon votre dossier est place en file d’attente pour verification humaine.'
-
-export const siteKeywords = [
-    'verification des faits',
-    'verification des dossiers',
-    'Fula',
-    'Peul',
-    'verification par IA',
-    'verification humaine',
-    'multilingue',
-]
-
-/** Browser chrome / PWA theme (brand red from Afalambe identity). */
-export const siteThemeColor = '#9B1B30'
+    'Submit claims in Arabic or English. When the system can verify against selected sources, you get a clear answer; otherwise your dossier is queued for human review.';
 
 export function getMetadataBase(): URL {
-    const raw = process.env.NEXT_PUBLIC_APP_URL
+    const raw = process.env.NEXT_PUBLIC_APP_URL;
     if (!raw) {
-        return new URL('http://localhost:3000')
+        return new URL('http://localhost:3000');
     }
-    return new URL(raw.endsWith('/') ? raw.slice(0, -1) : raw)
+    return new URL(raw.endsWith('/') ? raw.slice(0, -1) : raw);
 }
 
 export function shouldAllowIndexing(): boolean {
-    return process.env.VERCEL_ENV === 'production'
+    return process.env.VERCEL_ENV === 'production';
+}
+
+export async function getSiteMetadata(locale: AppLocale): Promise<{
+    siteName: string;
+    description: string;
+    keywords: string[];
+    openGraphLocale: string;
+    openGraphAlternateLocale: string[];
+}> {
+    const t = await getTranslations({ locale, namespace: 'metadata' });
+    const keywords = t('keywords').split(',').map((k) => k.trim());
+    return {
+        siteName,
+        description: t('description'),
+        keywords,
+        openGraphLocale: locale === 'ar' ? 'ar_SA' : 'en_US',
+        openGraphAlternateLocale: locale === 'ar' ? ['en_US'] : ['ar_SA'],
+    };
 }
 
 export function buildJsonLd(overrides?: {
-    name?: string
-    description?: string
-    url?: string
+    name?: string;
+    description?: string;
+    url?: string;
+    locale?: AppLocale;
 }): Record<string, unknown> {
-    const base = getMetadataBase().toString().replace(/\/$/, '')
+    const base = getMetadataBase().toString().replace(/\/$/, '');
+    const locale = overrides?.locale ?? 'ar';
     return {
         '@context': 'https://schema.org',
         '@type': 'WebApplication',
         name: overrides?.name ?? siteName,
         description: overrides?.description ?? siteDefaultDescription,
-        url: overrides?.url ?? base,
+        url: overrides?.url ?? `${base}/${locale}`,
         applicationCategory: 'UtilitiesApplication',
         operatingSystem: 'Any',
-        inLanguage: ['fr', 'en'],
+        inLanguage: ['ar', 'en'],
         offers: {
             '@type': 'Offer',
             price: '0',
             priceCurrency: 'USD',
         },
-    }
+    };
 }

@@ -28,7 +28,7 @@
 
 ## Shared UI
 
-- Use `@afalambe/ui` for shared components.
+- Use `@truthsentry/ui` for shared components.
 - Keep app-specific UI in app-local folders, not shared package internals.
 
 ## Quality

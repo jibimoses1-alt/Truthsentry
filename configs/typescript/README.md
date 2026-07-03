@@ -1,4 +1,4 @@
-# @afalambe/configs-typescript
+# @truthsentry/configs-typescript
 
 Shared TypeScript configuration for the monorepo workspace, providing consistent type checking and compilation settings across all applications and packages.
 
@@ -16,7 +16,7 @@ This package contains TypeScript configurations tailored for different environme
 
 ```json
 {
-    "extends": "@afalambe/configs-typescript/base"
+    "extends": "@truthsentry/configs-typescript/base"
 }
 ```
 
@@ -30,7 +30,7 @@ This package contains TypeScript configurations tailored for different environme
 
 ```json
 {
-    "extends": "@afalambe/configs-typescript/nextjs"
+    "extends": "@truthsentry/configs-typescript/nextjs"
 }
 ```
 
@@ -44,7 +44,7 @@ This package contains TypeScript configurations tailored for different environme
 
 ```json
 {
-    "extends": "@afalambe/configs-typescript/react-library"
+    "extends": "@truthsentry/configs-typescript/react-library"
 }
 ```
 
@@ -62,7 +62,7 @@ This package contains TypeScript configurations tailored for different environme
 ```json
 // tsconfig.json
 {
-    "extends": "@afalambe/configs-typescript/nextjs",
+    "extends": "@truthsentry/configs-typescript/nextjs",
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
@@ -79,7 +79,7 @@ This package contains TypeScript configurations tailored for different environme
 ```json
 // tsconfig.json
 {
-    "extends": "@afalambe/configs-typescript/base",
+    "extends": "@truthsentry/configs-typescript/base",
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
@@ -98,7 +98,7 @@ This package contains TypeScript configurations tailored for different environme
 ```json
 // tsconfig.json
 {
-    "extends": "@afalambe/configs-typescript/react-library",
+    "extends": "@truthsentry/configs-typescript/react-library",
     "compilerOptions": {
         "outDir": "dist",
         "declarationDir": "dist/types"
@@ -162,7 +162,7 @@ You can extend these configurations in your project:
 
 ```json
 {
-    "extends": "@afalambe/configs-typescript/base",
+    "extends": "@truthsentry/configs-typescript/base",
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
@@ -223,4 +223,4 @@ pnpm build
 
 ---
 
-Part of the [Afalambè monorepo](../../README.md) (Next.js, tRPC, Prisma, shared configs).
+Part of the [TruthSentry monorepo](../../README.md) (Next.js, tRPC, Prisma, shared configs).

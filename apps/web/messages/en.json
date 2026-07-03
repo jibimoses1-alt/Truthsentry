@@ -1,0 +1,396 @@
+{
+  "metadata": {
+    "description": "Submit claims in Arabic or English. When the system can verify against selected sources, you get a clear answer; otherwise your dossier is queued for human review.",
+    "keywords": "fact checking, claim verification, Arabic, English, AI verification, human review, multilingual"
+  },
+  "common": {
+    "brand": "TruthSentry",
+    "email": "Email",
+    "password": "Password",
+    "getStarted": "Get Started",
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "chat": "Chat",
+    "theme": "Theme",
+    "language": "Language",
+    "localeAr": "Arabic",
+    "localeEn": "English",
+    "switchToLight": "Switch to light mode",
+    "switchToDark": "Switch to dark mode",
+    "backHome": "Back to home",
+    "notFoundTitle": "Page not found",
+    "notFoundDescription": "The page you are looking for does not exist.",
+    "errorTitle": "Something went wrong",
+    "errorDescription": "An unexpected error occurred. Please try again.",
+    "tryAgain": "Try again"
+  },
+  "landing": {
+    "nav": {
+      "aria": "Main navigation",
+      "how": "How it works",
+      "why": "Why TruthSentry",
+      "faq": "FAQ"
+    },
+    "hero": {
+      "title": "The future of next-generation fact-checking",
+      "subtitle": "Meet {brand}, the AI assistant built to verify claims with curated sources, clear limits, and human review when confidence is low.",
+      "primaryCta": "Get Started",
+      "secondaryCta": "Request a Demo"
+    },
+    "skills": {
+      "badge": "Capabilities",
+      "title": "Discover the full {brand} toolkit",
+      "subtitle": "The next-level fact-checking assistant your team needs",
+      "cta": "Get Started",
+      "blocks": {
+        "prompts": {
+          "title": "Guided claim prompts",
+          "description": "Structured prompts help users describe rumors, forwards, and headlines so reviewers get complete context."
+        },
+        "outputs": {
+          "title": "Clear verdict outputs",
+          "description": "Every reply states verified, debunked, misleading, or partial, with reasoning tied to selected sources."
+        },
+        "response": {
+          "title": "Instant triage signals",
+          "description": "See confidence in real time and know immediately when a dossier is queued for human review."
+        },
+        "evidence": {
+          "title": "Rich evidence intake",
+          "description": "Attach links, screenshots, and text in one thread so fact-checkers never lose the original claim."
+        }
+      }
+    },
+    "spotlight": {
+      "badge": "Feature",
+      "title": "Structured verification you can trust",
+      "subtitle": "Move faster with {brand}'s claim pipeline—consistent metadata, visible confidence, and human escalation built in.",
+      "bullets": {
+        "0": "Arabic and English claim intake",
+        "1": "Source-backed answers from curated knowledge",
+        "2": "Human review queue when automation is uncertain"
+      }
+    },
+    "dynamicFeatures": {
+      "badge": "Feature",
+      "title": "Dynamic features of our fact-checking assistant"
+    },
+    "testimonials": {
+      "badge": "Customer reviews",
+      "title": "What our clients say",
+      "items": {
+        "0": {
+          "quote": "TruthSentry helped our team triage viral claims in hours instead of days. The human queue keeps sensitive dossiers accountable.",
+          "name": "Amira Hassan",
+          "role": "Program lead, civic media network"
+        },
+        "1": {
+          "quote": "Clear verdict labels and source citations made it easier to explain decisions to partners who do not work with AI every day.",
+          "name": "James Okonkwo",
+          "role": "Editor, regional news desk"
+        },
+        "2": {
+          "quote": "We finally have one place for WhatsApp forwards, screenshots, and follow-up questions without losing context.",
+          "name": "Fatou Diallo",
+          "role": "Verification coordinator"
+        }
+      }
+    },
+    "faq": {
+      "badge": "FAQs",
+      "introTitle": "Frequently asked questions",
+      "introDescription": "Your quick guide to common inquiries and how TruthSentry fits your workflow.",
+      "items": {
+        "0": {
+          "question": "What is {brand}?",
+          "answer": "{brand} is an AI-assisted fact-checking assistant. You submit claims with evidence; the system returns a clear verdict when sources match, or queues the dossier for human review."
+        },
+        "1": {
+          "question": "How does {brand} work?",
+          "answer": "You describe a claim in chat, optionally attach links or images, and the assistant analyzes against curated sources. Verdicts include verified, debunked, misleading, or partially true, with explicit uncertainty when needed."
+        },
+        "2": {
+          "question": "What skills does {brand} offer?",
+          "answer": "Guided prompts, structured verdicts, real-time triage signals, and rich evidence intake—including text, links, and screenshots in one thread."
+        },
+        "3": {
+          "question": "Which languages are supported?",
+          "answer": "The product targets Arabic and English for the interface and claim handling. Submit claims in either language; replies follow the claim language when possible."
+        },
+        "4": {
+          "question": "Is this legal or medical advice?",
+          "answer": "No. {brand} supports verification with selected sources. Official decisions remain with qualified professionals and program operators."
+        },
+        "5": {
+          "question": "What happens when the AI isn't sure?",
+          "answer": "Your dossier enters a human review queue. You are notified when a resolution is available, according to your program email settings."
+        }
+      }
+    },
+    "footer": {
+      "tagline": "Claims intake with human oversight. Verify against curated sources, with clear confidence and escalation when it matters.",
+      "product": "Product",
+      "company": "Company",
+      "resources": "Resources",
+      "legal": "Legal",
+      "features": "Features",
+      "integrations": "Integrations",
+      "pricing": "Pricing",
+      "changelog": "Changelog",
+      "about": "About",
+      "blog": "Blog",
+      "careers": "Careers",
+      "contact": "Contact",
+      "documentation": "Documentation",
+      "helpCenter": "Help Center",
+      "community": "Community",
+      "templates": "Templates",
+      "privacy": "Privacy",
+      "terms": "Terms",
+      "cookiePolicy": "Cookie Policy",
+      "copyright": "All rights reserved."
+    },
+    "preview": {
+      "menuChat": "Chat Bot",
+      "menuHelp": "Help Center",
+      "menuReport": "Report",
+      "menuSettings": "Settings",
+      "menuLogout": "Logout",
+      "trending": "Trending",
+      "upgrade": "Upgrade to Plus",
+      "plugins": "Plugins",
+      "factCheckEnabled": "Enabled: Fact-check",
+      "composerPlaceholder": "Hi, how can I help you? Enter a claim to verify...",
+      "send": "Send",
+      "clear": "Clear",
+      "chats": "Chats",
+      "chatHistory": "Chat history",
+      "today": "Today",
+      "earlier": "Earlier",
+      "newChat": "New chat",
+      "deleteAll": "Delete all",
+      "assistantMessage": "When a claim matches curated sources, you get a clear verdict. If confidence is low, your dossier is queued for human review with full context preserved. Ready to submit your first claim?",
+      "userMessage": "Can you verify this WhatsApp forward about local health guidance?",
+      "skills": {
+        "verify": "Claim verification",
+        "sources": "Source search",
+        "image": "Image evidence",
+        "report": "Review queue"
+      }
+    }
+  },
+  "auth": {
+    "signIn": {
+      "title": "Sign in",
+      "description": "Enter your credentials to continue.",
+      "submit": "Sign in",
+      "forgotPassword": "Forgot password?",
+      "noAccount": "Don't have an account?",
+      "failed": "Sign in failed"
+    },
+    "signUp": {
+      "title": "Create your account",
+      "description": "Start verifying claims in your language.",
+      "submit": "Create account",
+      "passwordHint": "At least 8 characters, one uppercase letter, and one number.",
+      "hasAccount": "Already have an account?",
+      "failed": "Sign up failed"
+    },
+    "verify": {
+      "title": "Verify your email",
+      "description": "One last step before you begin.",
+      "body": "Enter the 6-digit code sent to {email}.",
+      "bodyNoEmail": "No email was provided. You can request a new code below.",
+      "submit": "Verify",
+      "resendPrompt": "Need a new verification email?",
+      "resend": "Resend",
+      "backToSignUp": "Back to sign up",
+      "missingEmailTitle": "Email missing",
+      "missingEmailDescription": "Open this page from sign up to verify your address.",
+      "successTitle": "Email verified",
+      "successDescription": "Your account is now verified.",
+      "failed": "Verification failed",
+      "resentTitle": "Verification email sent",
+      "resentDescription": "Check your inbox for the new code.",
+      "resendFailed": "Could not resend verification"
+    },
+    "forgotPassword": {
+      "title": "Forgot password",
+      "description": "Enter your email and we will send a reset link.",
+      "submit": "Send reset link",
+      "backToSignIn": "Back to sign in",
+      "successTitle": "Check your email",
+      "successDescription": "If an account exists, a reset link has been sent.",
+      "failed": "Password reset request failed"
+    },
+    "resetPassword": {
+      "title": "Reset password",
+      "description": "Choose a new password for your account.",
+      "newPassword": "New password",
+      "submit": "Reset password",
+      "backToSignIn": "Back to sign in",
+      "missingToken": "Reset token is missing.",
+      "successTitle": "Password reset",
+      "successDescription": "You can now sign in with your new password.",
+      "failed": "Password reset failed"
+    },
+    "validation": {
+      "emailRequired": "Email is required",
+      "emailInvalid": "Enter a valid email address",
+      "passwordRequired": "Password is required",
+      "passwordMin": "Password must be at least 8 characters",
+      "passwordUppercase": "Include at least one uppercase letter",
+      "passwordDigit": "Include at least one number",
+      "passwordInvalid": "Invalid password."
+    },
+    "passwordToggle": {
+      "show": "Show password",
+      "hide": "Hide password"
+    }
+  },
+  "chat": {
+    "subtitle": "Verification assistant",
+    "verdicts": {
+      "verified": "Verified",
+      "debunked": "Debunked",
+      "misleading": "Misleading",
+      "partiallyTrue": "Partially true",
+      "pending": "Pending"
+    },
+    "home": {
+      "examples": "Examples",
+      "capabilities": "Capabilities",
+      "limitations": "Limitations",
+      "examplesLines": {
+        "0": "Explain a dossier in simple words",
+        "1": "What can {brand} verify for me?",
+        "2": "Compare two versions of a story I heard",
+        "3": "How do I send a screenshot or a link?"
+      },
+      "capabilitiesLines": {
+        "0": "Keeps prior messages in this thread for context",
+        "1": "Queues uncertain dossiers for human review when needed",
+        "2": "Accepts Arabic and English claim text",
+        "3": "Grounds answers in selected sources when confidence is high"
+      },
+      "limitationsLines": {
+        "0": "May miss nuance if the dossier lacks detail",
+        "1": "Does not replace official legal, medical, or administrative advice",
+        "2": "Does not browse the open web like a general search engine",
+        "3": "Responses may be delayed during high traffic"
+      }
+    },
+    "sidebar": {
+      "newChat": "New chat",
+      "searchPlaceholder": "Search chats",
+      "expandSidebar": "Expand sidebar",
+      "collapseSidebar": "Collapse sidebar",
+      "chatHistory": "Chat history"
+    },
+    "metadata": {
+      "source": "Source",
+      "platform": "Platform",
+      "topic": "Topic",
+      "location": "Location",
+      "language": "Language"
+    },
+    "untitledThread": "Untitled conversation",
+    "clearConversations": "Clear conversations",
+    "myAccount": "My account",
+    "signOut": "Sign out",
+    "adminLink": "Review queue",
+    "privacyNote": "Your chat is private and tied to your signed-in account.",
+    "today": "Today",
+    "placeholder": "Type a message",
+    "typing": "Assistant is typing",
+    "offline": "You are offline. Messages will send automatically when you reconnect.",
+    "imageAlt": "Uploaded evidence",
+    "outboxPending": "{count, plural, one {# unsent message} other {# unsent messages}}",
+    "retry": "Retry",
+    "signInRequired": "Sign in to use chat",
+    "toasts": {
+      "imageRejected": "Image rejected",
+      "nothingToSend": "Nothing to send",
+      "enterClaim": "Describe your claim before sending.",
+      "sendFailed": "Could not send message",
+      "selectionCleared": "Selection cleared",
+      "pickThread": "Choose an existing thread or start a new one."
+    },
+    "attachmentFallback": "(attached image)",
+    "imageLabel": "Image",
+    "uploadFailed": "File upload failed.",
+    "imageEvidenceNote": "Screenshot evidence is included in AI analysis when attached."
+  },
+  "errors": {
+    "generic": "Something went wrong.",
+    "unexpected": "An unexpected error occurred.",
+    "requestFailed": "Request failed",
+    "AUTH_RATE_LIMIT_REGISTER": "Too many requests. Try again in an hour.",
+    "AUTH_EMAIL_IN_USE": "This email is already in use.",
+    "AUTH_RATE_LIMIT_LOGIN": "Too many requests. Try again in a minute.",
+    "AUTH_INVALID_CREDENTIALS": "Invalid credentials.",
+    "AUTH_INVALID_VERIFICATION": "The verification code is invalid or expired.",
+    "AUTH_USER_NOT_FOUND": "User not found.",
+    "AUTH_INVALID_RESET_TOKEN": "The reset link is invalid or expired.",
+    "AUTH_SIGN_IN_REQUIRED": "Sign in required.",
+    "AUTH_ADMIN_REQUIRED": "Admin role required.",
+    "AUTH_EMAIL_NOT_VERIFIED": "Verify your email before using chat.",
+    "CLAIM_THREAD_NOT_FOUND": "Thread not found.",
+    "CLAIM_RATE_LIMIT": "Too many requests. Try again in a minute.",
+    "SESSION_USER_MISSING": "Session user missing.",
+    "CLAIM_UPLOAD_HEIC_UNSUPPORTED": "HEIC format is not supported. Use PNG, JPEG, or WebP.",
+    "CLAIM_UPLOAD_FORMAT_UNSUPPORTED": "Format not supported. Use PNG, JPEG, or WebP.",
+    "CLAIM_UPLOAD_MIME_MISMATCH": "File extension does not match the MIME type.",
+    "CLAIM_UPLOAD_TOO_LARGE": "Image exceeds the maximum size of 5 MB.",
+    "CLAIM_UPLOAD_TOO_MANY": "Maximum 4 images per message.",
+    "CLAIM_UPLOAD_DIMENSIONS_TOO_LARGE": "Image is too large. Maximum 4096x4096 pixels.",
+    "CLAIM_UPLOAD_UNREADABLE": "Could not read the image.",
+    "CLAIM_UPLOAD_PREPARE_FAILED": "Could not prepare file upload.",
+    "CLAIM_UPLOAD_INVALID": "Invalid file.",
+    "CLAIM_AUDIO_TOO_LARGE": "Audio recording exceeds the maximum size of 10 MB.",
+    "CLAIM_AUDIO_FORMAT_UNSUPPORTED": "Audio format not supported.",
+    "TRANSCRIBE_UNAVAILABLE": "Voice transcription is not available.",
+    "TRANSCRIBE_FAILED": "Could not transcribe audio.",
+    "CLAIM_NOT_FOUND": "Claim not found."
+  },
+  "admin": {
+    "loading": "Loading...",
+    "queueTitle": "Review queue",
+    "queueDescription": "Claims that may need human review.",
+    "queueEmpty": "No claims in the review queue.",
+    "untitled": "Untitled claim",
+    "review": "Review",
+    "forbiddenTitle": "Admin access required",
+    "forbiddenDescription": "Your account does not have permission to view this page.",
+    "backToChat": "Back to chat",
+    "backToQueue": "Back to queue",
+    "threadTitle": "Conversation",
+    "resolveTitle": "Publish review",
+    "verdictLabel": "Verdict",
+    "reviewTextLabel": "Review message",
+    "submitReview": "Submit review",
+    "resolveSuccessTitle": "Review submitted",
+    "resolveSuccessDescription": "The claimant will be notified by email.",
+    "resolveFailed": "Could not submit review.",
+    "claimNotFound": "Claim not found.",
+    "verdict": {
+      "VERIFIED": "Verified",
+      "DEBUNKED": "Debunked",
+      "MISLEADING": "Misleading",
+      "PARTIALLY_TRUE": "Partially true",
+      "PENDING": "Pending"
+    }
+  },
+  "legal": {
+    "privacy": {
+      "title": "Privacy",
+      "description": "Privacy policy for {brand} (draft).",
+      "stub": "Provisional page. Replace with counsel-approved text before production launch."
+    },
+    "terms": {
+      "title": "Terms of use",
+      "description": "Terms of use for {brand} (draft).",
+      "stub": "Provisional page. Replace with counsel-approved text before production launch."
+    }
+  }
+}

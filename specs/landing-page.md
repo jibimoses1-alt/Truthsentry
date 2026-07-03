@@ -2,7 +2,7 @@
 
 ## Problem
 
-Visitors arrive from **WhatsApp or campaigns** with little context. They need to understand Afalambè / Safe Voices, trust the site, choose language where offered, and reach **sign-up or sign-in** without friction. After that, they should land in the **AI chat interface** where claims are submitted and answered (see `web.md`). The landing page must not leak internal implementation details.
+Visitors arrive from **WhatsApp or campaigns** with little context. They need to understand TruthSentry, trust the site, choose language where offered, and reach **sign-up or sign-in** without friction. After that, they should land in the **AI chat interface** where claims are submitted and answered (see `web.md`). The landing page must not leak internal implementation details.
 
 ## Product funnel
 
@@ -18,16 +18,16 @@ Landing (marketing) → Sign up / Sign in → AI chat (authenticated product)
 - Communicate purpose: claims intake (including Fula/Peul), AI-assisted verification when possible, human review when not.
 - Clear primary CTA: open the **AI chat** flow (exact label in content pass, e.g. “Start in chat” / “Vérifier une déclaration”).
 - Clear secondary CTA: **Sign in** for returning users (exact copy in content pass).
-- Support **afalambe.org** (or configured `NEXT_PUBLIC_APP_URL`) and future campaign paths (see `whatsapp-distribution.md`).
+- Support **truthsentry.org** (or configured `NEXT_PUBLIC_APP_URL`) and future campaign paths (see `whatsapp-distribution.md`).
 - Fast first paint; minimal JavaScript for static hero; defer heavy widgets.
 
 ## Content architecture (reference, not copy)
 
-Use [iWeaver’s AI fact-checking landing](https://www.iweaver.ai/agents/fact-checking/?utm_source=chatgpt.com) as a **structural reference** for useful public content: hero with clear promise, a short **how it works** sequence, **why this product** bullets, **who it is for** (use cases), and **FAQs**. **Do not paste or lightly rewrite their proprietary marketing copy**; write original Afalambè / Safe Voices copy in FR/EN (and later other UI languages as needed).
+Use [iWeaver’s AI fact-checking landing](https://www.iweaver.ai/agents/fact-checking/?utm_source=chatgpt.com) as a **structural reference** for useful public content: hero with clear promise, a short **how it works** sequence, **why this product** bullets, **who it is for** (use cases), and **FAQs**. **Do not paste or lightly rewrite their proprietary marketing copy**; write original TruthSentry copy in FR/EN (and later other UI languages as needed).
 
-Map their pattern to Afalambè:
+Map their pattern to TruthSentry:
 
-| Reference pattern (iWeaver-style) | Afalambè meaning                                                                                                                                           |
+| Reference pattern (iWeaver-style) | TruthSentry meaning                                                                                                                                           |
 | --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Upload / submit content           | User will **submit a claim in chat** after sign-in (not on the landing page for MVP).                                                                      |
 | AI verification                   | Cross-check against **approved knowledge** and policies; return an answer or flag uncertainty (see `claims-ai-pipeline.md`).                               |
@@ -47,8 +47,8 @@ Optional later: a **non-authenticated** “demo” or sample screenshot section 
 
 - Hero, short value proposition, **primary CTA to chat (via auth)**, trust strip (partners / security posture as approved), footer with legal links placeholders.
 - **How it works** (3 steps): sign in → describe claim in chat → receive AI outcome or human queue (see [Content architecture](#content-architecture-reference-not-copy)).
-- **Why Afalambè** (4 to 6 bullets): curated knowledge, confidence and limits, human escalation, languages (Fula/Peul + UI languages), high-level privacy posture.
-- **Use cases** (3 to 4 cards): tune to Safe Voices stakeholders; avoid mirroring the reference site’s exact vertical list or wording.
+- **Why TruthSentry** (4 to 6 bullets): curated knowledge, confidence and limits, human escalation, languages (Fula/Peul + UI languages), high-level privacy posture.
+- **Use cases** (3 to 4 cards): tune to TruthSentry stakeholders; avoid mirroring the reference site’s exact vertical list or wording.
 - **FAQs** (6 to 10): accuracy limits, human review, languages, data retention (or “see privacy”), scope of media/manipulation checks, operator/contact.
 - Optional locale switcher (FR/EN) for chrome only; claim languages explained in copy, not necessarily selectable on landing.
 - Metadata for SEO and social preview (title, description, OG image when asset exists).
@@ -70,7 +70,7 @@ Optional later: a **non-authenticated** “demo” or sample screenshot section 
 
 - Hero: H1, subcopy, **primary CTA** (start chat flow), **secondary CTA** (sign in).
 - “How it works”: three numbered steps aligned to chat (see [Content architecture](#content-architecture-reference-not-copy)).
-- “Why Afalambè”: short bullet list (credibility, limits, escalation, languages).
+- “Why TruthSentry”: short bullet list (credibility, limits, escalation, languages).
 - “Who it is for”: compact use-case cards with links or anchors; no claim submission forms here.
 - FAQ accordion: minimum 6 questions covering languages, data use, human review, accuracy limits, security, contact (extend list in content pass).
 - Final band: single reinforcement line + repeat primary CTA (optional; matches common landing pattern on reference site).

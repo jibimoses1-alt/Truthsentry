@@ -1,6 +1,8 @@
 'use client';
 
-import { toastManager } from '@afalambe/ui/components/toast';
+import type { AppRouter } from '@truthsentry/trpc';
+import { TRPCClientError } from '@trpc/client';
+import { toastManager } from '@truthsentry/ui/components/toast';
 
 export type ApiToastPayload = {
     title: string;
@@ -45,10 +47,35 @@ export function notifyApiWarning(payload: ApiToastPayload): void {
     });
 }
 
+function getTrpcClientErrorMessage(error: TRPCClientError<AppRouter>): string {
+    const data = error.data as
+        | { zodError?: { fieldErrors?: Record<string, string[] | undefined> } }
+        | undefined;
+    const fieldErrors = data?.zodError?.fieldErrors;
+    if (fieldErrors) {
+        const parts = Object.entries(fieldErrors).flatMap(([field, messages]) =>
+            (messages ?? []).map((message) => `${field}: ${message}`),
+        );
+        if (parts.length > 0) {
+            return parts.join('; ');
+        }
+    }
+
+    const shape = error.shape as { message?: string } | undefined;
+    if (typeof shape?.message === 'string' && shape.message.trim().length > 0) {
+        return shape.message;
+    }
+
+    return error.message || 'Une erreur est survenue.';
+}
+
 /**
- * Map unknown errors (Error, string, future tRPC errors) to a single message.
+ * Map unknown errors (Error, string, tRPC errors) to a single message.
  */
 export function getApiErrorMessage(error: unknown): string {
+    if (error instanceof TRPCClientError) {
+        return getTrpcClientErrorMessage(error);
+    }
     if (error instanceof Error) {
         return error.message;
     }

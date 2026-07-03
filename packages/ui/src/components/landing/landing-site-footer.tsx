@@ -1,5 +1,6 @@
 import type * as React from 'react';
 
+import { ThemeWordmark } from '../brand/theme-wordmark';
 import { cn } from '../../lib/utils';
 
 const linkColumns = {
@@ -28,12 +29,31 @@ const linkColumns = {
     ],
 } as const;
 
+export type LandingFooterLink = {
+    label: string;
+    href: string;
+};
+
+export type LandingSiteFooterColumns = {
+    tagline: string;
+    productHeading: string;
+    product: LandingFooterLink[];
+    companyHeading: string;
+    company: LandingFooterLink[];
+    resourcesHeading: string;
+    resources: LandingFooterLink[];
+    legal: LandingFooterLink[];
+    copyrightSuffix: string;
+};
+
 export type LandingSiteFooterProps = {
     brand: string;
     brandHref?: string;
     brandLogoSrc?: string;
     brandLogoDarkSrc?: string;
     brandLogoAlt?: string;
+    /** When set, overrides default English column copy. */
+    columns?: LandingSiteFooterColumns;
     /** Short supporting line under the logo (defaults to a product-safe line). */
     tagline?: string;
     /** Display name after the copyright symbol (e.g. product or legal entity). */
@@ -50,12 +70,22 @@ export function LandingSiteFooter({
     brandLogoSrc,
     brandLogoDarkSrc,
     brandLogoAlt,
+    columns,
     tagline = defaultTagline,
     copyrightHolder,
     className,
 }: LandingSiteFooterProps): React.ReactElement {
     const year = new Date().getFullYear();
     const holder = copyrightHolder ?? brand;
+    const resolvedTagline = columns?.tagline ?? tagline;
+    const productLinks = columns?.product ?? linkColumns.product;
+    const companyLinks = columns?.company ?? linkColumns.company;
+    const resourcesLinks = columns?.resources ?? linkColumns.resources;
+    const legalLinks = columns?.legal ?? linkColumns.legal;
+    const productHeading = columns?.productHeading ?? 'Product';
+    const companyHeading = columns?.companyHeading ?? 'Company';
+    const resourcesHeading = columns?.resourcesHeading ?? 'Resources';
+    const copyrightSuffix = columns?.copyrightSuffix ?? 'All rights reserved.';
 
     return (
         <footer
@@ -73,24 +103,12 @@ export function LandingSiteFooter({
                         >
                             {brandLogoSrc ? (
                                 brandLogoDarkSrc ? (
-                                    <>
-                                        <img
-                                            src={brandLogoSrc}
-                                            alt={brandLogoAlt ?? brand}
-                                            width={160}
-                                            height={36}
-                                            className="h-5 w-auto max-w-[min(100%,12rem)] object-contain object-left dark:hidden"
-                                            decoding="async"
-                                        />
-                                        <img
-                                            src={brandLogoDarkSrc}
-                                            alt={brandLogoAlt ?? brand}
-                                            width={160}
-                                            height={36}
-                                            className="hidden h-5 w-auto max-w-[min(100%,12rem)] object-contain object-left dark:block"
-                                            decoding="async"
-                                        />
-                                    </>
+                                    <ThemeWordmark
+                                        lightSrc={brandLogoSrc}
+                                        darkSrc={brandLogoDarkSrc}
+                                        alt={brandLogoAlt ?? brand}
+                                        imgClassName="h-5 max-w-[min(100%,12rem)]"
+                                    />
                                 ) : (
                                     <img
                                         src={brandLogoSrc}
@@ -105,12 +123,12 @@ export function LandingSiteFooter({
                                 <span className="text-sm font-semibold">{brand}</span>
                             )}
                         </a>
-                        <p className="mt-4 max-w-xs text-sm text-[var(--lp-fg-muted)]">{tagline}</p>
+                        <p className="mt-4 max-w-xs text-sm text-[var(--lp-fg-muted)]">{resolvedTagline}</p>
                     </div>
                     <div>
-                        <h3 className="mb-3 text-sm font-medium text-[var(--lp-fg)]">Product</h3>
+                        <h3 className="mb-3 text-sm font-medium text-[var(--lp-fg)]">{productHeading}</h3>
                         <ul className="space-y-2">
-                            {linkColumns.product.map((link) => (
+                            {productLinks.map((link) => (
                                 <li key={link.label}>
                                     <a
                                         href={link.href}
@@ -123,9 +141,9 @@ export function LandingSiteFooter({
                         </ul>
                     </div>
                     <div>
-                        <h3 className="mb-3 text-sm font-medium text-[var(--lp-fg)]">Company</h3>
+                        <h3 className="mb-3 text-sm font-medium text-[var(--lp-fg)]">{companyHeading}</h3>
                         <ul className="space-y-2">
-                            {linkColumns.company.map((link) => (
+                            {companyLinks.map((link) => (
                                 <li key={link.label}>
                                     <a
                                         href={link.href}
@@ -138,9 +156,9 @@ export function LandingSiteFooter({
                         </ul>
                     </div>
                     <div>
-                        <h3 className="mb-3 text-sm font-medium text-[var(--lp-fg)]">Resources</h3>
+                        <h3 className="mb-3 text-sm font-medium text-[var(--lp-fg)]">{resourcesHeading}</h3>
                         <ul className="space-y-2">
-                            {linkColumns.resources.map((link) => (
+                            {resourcesLinks.map((link) => (
                                 <li key={link.label}>
                                     <a
                                         href={link.href}
@@ -155,10 +173,10 @@ export function LandingSiteFooter({
                 </div>
                 <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-[var(--lp-border)] pt-8">
                     <p className="text-sm text-[var(--lp-fg-muted)]">
-                        &copy; {year} {holder}. All rights reserved.
+                        &copy; {year} {holder}. {copyrightSuffix}
                     </p>
                     <nav className="flex flex-wrap gap-4" aria-label="Legal">
-                        {linkColumns.legal.map((link) => (
+                        {legalLinks.map((link) => (
                             <a
                                 key={link.label}
                                 href={link.href}

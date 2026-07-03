@@ -1,11 +1,12 @@
 'use client';
 
 import { useCallback, useState, type FormEvent, type ReactElement } from 'react';
-import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { RefreshCw, ShieldCheck } from 'lucide-react';
-import { Button } from '@afalambe/ui/components/button';
-import { InputOTP, InputOTPGroup, InputOTPSlot } from '@afalambe/ui/components/input-otp';
-import { notifyApiError, notifyApiInfo } from '@/lib/api-toast';
+import { Button } from '@truthsentry/ui/components/button';
+import { InputOTP, InputOTPGroup, InputOTPSlot } from '@truthsentry/ui/components/input-otp';
+import { useRouter } from '@/i18n/navigation';
+import { useApiToast } from '@/hooks/use-api-toast';
 import { trpc } from '@/lib/trpc';
 
 export type VerifyEmailFormProps = {
@@ -15,7 +16,9 @@ export type VerifyEmailFormProps = {
 const OTP_LENGTH = 6;
 
 export function VerifyEmailForm({ email }: VerifyEmailFormProps): ReactElement {
+    const t = useTranslations('auth.verify');
     const router = useRouter();
+    const { notifyApiException, notifyApiInfo } = useApiToast();
     const verifyMutation = trpc.auth.verifyEmail.useMutation();
     const resendMutation = trpc.auth.resendVerification.useMutation();
     const [otp, setOtp] = useState('');
@@ -24,9 +27,9 @@ export function VerifyEmailForm({ email }: VerifyEmailFormProps): ReactElement {
         (event: FormEvent<HTMLFormElement>) => {
             event.preventDefault();
             if (!email) {
-                notifyApiError({
-                    title: 'E-mail manquant',
-                    description: "Ouvrez cette page depuis l'inscription pour verifier votre compte.",
+                notifyApiInfo({
+                    title: t('missingEmailTitle'),
+                    description: t('missingEmailDescription'),
                 });
                 return;
             }
@@ -35,21 +38,18 @@ export function VerifyEmailForm({ email }: VerifyEmailFormProps): ReactElement {
                 {
                     onSuccess: () => {
                         notifyApiInfo({
-                            title: 'E-mail verifie',
-                            description: 'Votre compte est maintenant verifie.',
+                            title: t('successTitle'),
+                            description: t('successDescription'),
                         });
                         router.push('/chat');
                     },
                     onError: (error) => {
-                        notifyApiError({
-                            title: 'Verification impossible',
-                            description: error.message,
-                        });
+                        notifyApiException(error, 'auth.verify.failed');
                     },
                 },
             );
         },
-        [email, otp, router, verifyMutation],
+        [email, notifyApiException, notifyApiInfo, otp, router, t, verifyMutation],
     );
 
     const handleResend = useCallback(() => {
@@ -57,25 +57,20 @@ export function VerifyEmailForm({ email }: VerifyEmailFormProps): ReactElement {
         resendMutation.mutate(undefined, {
             onSuccess: () => {
                 notifyApiInfo({
-                    title: 'E-mail de verification envoye',
-                    description: 'Consultez votre boite de reception pour un nouveau code a 6 chiffres.',
+                    title: t('resentTitle'),
+                    description: t('resentDescription'),
                 });
             },
             onError: (error) => {
-                notifyApiError({
-                    title: 'Renvoi de verification impossible',
-                    description: error.message,
-                });
+                notifyApiException(error, 'auth.verify.resendFailed');
             },
         });
-    }, [resendMutation]);
+    }, [notifyApiException, notifyApiInfo, resendMutation, t]);
 
     return (
         <form onSubmit={handleSubmit} className="flex w-full flex-col items-center gap-6">
             <p className="text-center text-[length:0.875rem] leading-relaxed text-[var(--lp-fg-muted)]">
-                {email
-                    ? `Saisissez le code a 6 chiffres envoye a ${email}.`
-                    : "Aucun e-mail n'a ete fourni. Vous pouvez demander un nouveau code ci-dessous."}
+                {email ? t('body', { email }) : t('bodyNoEmail')}
             </p>
 
             <InputOTP maxLength={OTP_LENGTH} value={otp} onChange={setOtp}>
@@ -88,11 +83,11 @@ export function VerifyEmailForm({ email }: VerifyEmailFormProps): ReactElement {
 
             <Button type="submit" loading={verifyMutation.isPending} disabled={otp.length !== OTP_LENGTH} className="w-full">
                 <ShieldCheck className="size-4 opacity-90" />
-                Verifier
+                {t('submit')}
             </Button>
 
             <div className="flex flex-wrap items-center justify-center gap-x-1 text-center text-[length:0.8125rem] text-[var(--lp-fg-muted)]">
-                <span>Besoin d&apos;un nouvel e-mail de verification ?</span>
+                <span>{t('resendPrompt')}</span>
                 <Button
                     type="button"
                     variant="link"
@@ -102,7 +97,7 @@ export function VerifyEmailForm({ email }: VerifyEmailFormProps): ReactElement {
                     className="inline-flex h-auto min-h-0 gap-1.5 px-1 py-0 text-[var(--lp-accent)]"
                 >
                     <RefreshCw className="size-3.5 shrink-0" />
-                    Renvoyer
+                    {t('resend')}
                 </Button>
             </div>
         </form>

@@ -1,4 +1,4 @@
-# @afalambe/configs-eslint
+# @truthsentry/configs-eslint
 
 Shared ESLint configuration for the monorepo workspace, providing consistent code quality and style enforcement across all applications and packages.
 
@@ -40,8 +40,8 @@ This package contains ESLint configurations tailored for different environments 
 Add to your `eslint.config.js`:
 
 ```js
-import { baseConfig } from '@afalambe/configs-eslint/base';
-import { nextConfig } from '@afalambe/configs-eslint/next';
+import { baseConfig } from '@truthsentry/configs-eslint/base';
+import { nextConfig } from '@truthsentry/configs-eslint/next';
 
 export default [
     ...baseConfig,
@@ -55,8 +55,8 @@ export default [
 For React libraries:
 
 ```js
-import { baseConfig } from '@afalambe/configs-eslint/base';
-import { reactInternalConfig } from '@afalambe/configs-eslint/react-internal';
+import { baseConfig } from '@truthsentry/configs-eslint/base';
+import { reactInternalConfig } from '@truthsentry/configs-eslint/react-internal';
 
 export default [...baseConfig, ...reactInternalConfig];
 ```

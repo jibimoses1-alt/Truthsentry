@@ -6,7 +6,7 @@ Users discover the product through **WhatsApp** and other **campaign channels**.
 
 ## Goals
 
-- Document canonical URL shapes from production domain (e.g. `https://afalambe.org/...`).
+- Document canonical URL shapes from production domain (e.g. `https://truthsentry.org/...`).
 - Preserve **query parameters** used for attribution (`utm_source`, `utm_medium`, `utm_campaign`, optional custom `ref` or `c` codes) through redirect and sign-up flows where technically possible.
 - Clear user messaging when opening in **in-app browsers** (Facebook, Instagram, WhatsApp) that may strip cookies or behave differently.
 

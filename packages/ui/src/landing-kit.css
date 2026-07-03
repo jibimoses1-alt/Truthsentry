@@ -1,7 +1,6 @@
 /*
-  Afalambè — marketing / landing page kit (light surface, high contrast).
-  Scoped with [data-ui-kit="landing"]. Pair with chat kit on /chat only.
-  Map to Figma: ChatGPT UI Kit — landing frame (e.g. node 804-273); update tokens when measured.
+  TruthSentry — marketing / landing page kit.
+  Scoped with [data-ui-kit="landing"]. Primary brand: #42acb5.
 */
 
 [data-ui-kit='landing'] {
@@ -12,18 +11,28 @@
     --lp-fg-subtle: #737373;
     --lp-border: #e5e5e5;
     --lp-border-strong: #d4d4d4;
-    --lp-accent: #10a37f;
-    --lp-accent-hover: #0d8f6e;
-    --lp-accent-fg: #ffffff;
-    --lp-ring: rgb(16 163 127 / 0.35);
+    --lp-accent: #42acb5;
+    --lp-accent-hover: #36949c;
+    --lp-accent-fg: #0a0a0a;
+    --lp-ring: rgb(66 172 181 / 0.4);
     --lp-hero-gradient: linear-gradient(180deg, #f4f4f5 0%, #fafafa 45%, #fafafa 100%);
+    --lp-hero-surface: #f0f4f5;
+    --lp-hero-grid: rgb(66 172 181 / 0.12);
+    --lp-hero-glow: rgb(66 172 181 / 0.15);
+    --lp-surface-card: #ffffff;
+    --lp-surface-inset: #f0f0f2;
+    --lp-surface-mock: #e8e8ec;
+    --lp-surface-mock-main: #f4f4f5;
+    --lp-surface-mock-send: #d4d4d8;
     --lp-radius-sm: 8px;
     --lp-radius-md: 12px;
     --lp-radius-lg: 16px;
+    --lp-radius-xl: 20px;
     --lp-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.05);
     --lp-shadow-md: 0 4px 24px rgb(0 0 0 / 0.06);
-    --lp-cta-gradient: linear-gradient(180deg, #212730 0%, #3d3d3d 100%);
-    --lp-cta-gradient-hover: linear-gradient(180deg, #2a3140 0%, #4a4a4a 100%);
+    --lp-shadow-hero: 0 24px 80px rgb(0 0 0 / 0.45);
+    --lp-cta-gradient: linear-gradient(180deg, #42acb5 0%, #36949c 100%);
+    --lp-cta-gradient-hover: linear-gradient(180deg, #4eb8c1 0%, #42acb5 100%);
     --lp-max-width: 72rem;
 }
 
@@ -45,13 +54,66 @@
     --lp-fg-subtle: #737373;
     --lp-border: #262626;
     --lp-border-strong: #404040;
-    --lp-accent: #10a37f;
-    --lp-accent-hover: #12b88a;
-    --lp-accent-fg: #ffffff;
-    --lp-ring: rgb(16 163 127 / 0.45);
+    --lp-accent: #42acb5;
+    --lp-accent-hover: #4eb8c1;
+    --lp-accent-fg: #0a0a0a;
+    --lp-ring: rgb(66 172 181 / 0.45);
     --lp-hero-gradient: linear-gradient(180deg, #0f0f0f 0%, #0a0a0a 45%, #0a0a0a 100%);
+    --lp-hero-surface: #0c0c0e;
+    --lp-surface-card: #141416;
+    --lp-surface-inset: #1a1a1d;
+    --lp-surface-mock: #0e0e10;
+    --lp-surface-mock-main: #121214;
+    --lp-surface-mock-send: #2a2a2e;
     --lp-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4);
     --lp-shadow-md: 0 4px 24px rgb(0 0 0 / 0.35);
-    --lp-cta-gradient: linear-gradient(180deg, #d4d4d4 0%, #a3a3a3 100%);
-    --lp-cta-gradient-hover: linear-gradient(180deg, #e5e5e5 0%, #b3b3b3 100%);
+    --lp-cta-gradient: linear-gradient(180deg, #42acb5 0%, #36949c 100%);
+    --lp-cta-gradient-hover: linear-gradient(180deg, #4eb8c1 0%, #42acb5 100%);
+}
+
+[data-ui-kit='landing'] .landing-hero-section {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--lp-border);
+    --lp-hero-surface: #f0f4f5;
+    --lp-hero-grid: rgb(66 172 181 / 0.12);
+    --lp-hero-glow: rgb(66 172 181 / 0.15);
+    background-color: var(--lp-hero-surface);
+    background-image:
+        radial-gradient(ellipse 50% 40% at 0% 50%, var(--lp-hero-glow), transparent 70%),
+        radial-gradient(ellipse 50% 40% at 100% 50%, var(--lp-hero-glow), transparent 70%),
+        linear-gradient(var(--lp-hero-grid) 1px, transparent 1px),
+        linear-gradient(90deg, var(--lp-hero-grid) 1px, transparent 1px);
+    background-size:
+        100% 100%,
+        100% 100%,
+        48px 48px,
+        48px 48px;
+}
+
+.dark [data-ui-kit='landing'] .landing-hero-section {
+    --lp-hero-surface: #0c0c0e;
+    --lp-hero-grid: rgb(66 172 181 / 0.07);
+    --lp-hero-glow: rgb(66 172 181 / 0.22);
+}
+
+[data-ui-kit='landing'] .landing-hero-primary-btn {
+    border: none;
+    background: var(--lp-accent);
+    color: var(--lp-accent-fg);
+    box-shadow: 0 4px 24px rgb(66 172 181 / 0.35);
+}
+
+[data-ui-kit='landing'] .landing-hero-primary-btn:hover {
+    background: var(--lp-accent-hover);
+}
+
+[data-ui-kit='landing'] .landing-header-primary-btn {
+    border: none;
+    background: var(--lp-accent);
+    color: var(--lp-accent-fg);
+}
+
+[data-ui-kit='landing'] .landing-header-primary-btn:hover {
+    background: var(--lp-accent-hover);
 }

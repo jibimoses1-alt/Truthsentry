@@ -8,8 +8,8 @@ import {
     Shield,
 } from 'lucide-react';
 
-import { Card } from '@afalambe/ui/components/card';
-import { cn } from '@afalambe/ui/lib/utils';
+import { Card } from '@truthsentry/ui/components/card';
+import { cn } from '@truthsentry/ui/lib/utils';
 
 const cardOutline =
     'border-[var(--lp-border)] bg-[var(--lp-bg-elevated)]/90 shadow-[var(--lp-shadow-sm)] before:shadow-none';
@@ -29,7 +29,7 @@ function PillIcon({ children }: { children: React.ReactNode }): ReactElement {
 
 /**
  * Feature grid for the marketing home (above "How it works").
- * Visual pattern inspired by integration-style cards; content is Afalambè-specific.
+ * Visual pattern inspired by integration-style cards; content is TruthSentry-specific.
  */
 export function LandingFeatures(): ReactElement {
     return (

@@ -4,7 +4,7 @@ import type { ReactNode, ReactElement } from 'react';
 import {
     AnchoredToastProvider,
     ToastProvider,
-} from '@afalambe/ui/components/toast';
+} from '@truthsentry/ui/components/toast';
 
 /**
  * Global toast stack (coss / Base UI). Required before calling `toastManager` / `anchoredToastManager`.

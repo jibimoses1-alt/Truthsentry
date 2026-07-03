@@ -1,12 +1,14 @@
 # Spec: API layer (tRPC)
 
+> **Superseded for detail by:** [feat-0003](./features/feat-0003-api-trpc/PRODUCT.md)–[feat-0006](./features/feat-0006-email/PRODUCT.md), [feat-0016](./features/feat-0016-rate-limiting/PRODUCT.md), [feat-0021](./features/feat-0021-health-observability/PRODUCT.md), [feat-0024](./features/feat-0024-client-errors-toasts/PRODUCT.md). This file remains a vertical summary.
+
 ## Problem
 
 The browser and any future clients need a **typed, versionable API** for authentication, claims, AI outcomes, and admin workflows. Business rules and authorisation must live **server-side** behind tRPC procedures, using **Prisma** for persistence and Supabase Postgres as the database.
 
 ## Goals
 
-- Single tRPC router (or modular sub-routers) merged into one `appRouter` type export for `@afalambe/web`.
+- Single tRPC router (or modular sub-routers) merged into one `appRouter` type export for `@truthsentry/web`.
 - Clear **authorisation matrix**: who can call which procedure.
 - **Input validation** on every procedure (Zod or equivalent aligned with repo rules).
 - Predictable error mapping (user-safe vs log-only detail).

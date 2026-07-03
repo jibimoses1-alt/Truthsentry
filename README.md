@@ -1,14 +1,14 @@
-### Afalambè
+### TruthSentry
 
-Afalambè is being built to let people submit claims (including in Fula/Peul), return AI-verified answers when possible, and queue unmatched items for human review. Delivery includes a web experience and campaign links (for example from WhatsApp).
+TruthSentry is being built to let people submit claims (including in Fula/Peul), return AI-verified answers when possible, and queue unmatched items for human review. Delivery includes a web experience and campaign links (for example from WhatsApp).
 
-**[Website »](https://afalambe.org)**
+**[Website »](https://truthsentry.org)**
 
 ## About the Project
 
-Afalambè is being built to let people submit claims (including in Fula/Peul), return AI-verified answers when possible, and queue unmatched items for human review. Delivery includes a web experience and campaign links (for example from WhatsApp).
+TruthSentry is being built to let people submit claims (including in Fula/Peul), return AI-verified answers when possible, and queue unmatched items for human review. Delivery includes a web experience and campaign links (for example from WhatsApp).
 
-Private internal monorepo for the Afalambè program. It brings together a Next.js web surface, an API layer built with tRPC, Prisma talking to PostgreSQL on Supabase, and Resend for transactional email (account and system messages such as sign-in and notifications—keep bulk or campaign mail out of this codebase unless you intentionally add it). Shared UI lives in `packages/ui` (COSS-oriented primitives); tRPC routers, the Prisma schema and client, and email modules stay in their own packages so `apps/web` and `apps/api` remain orchestration-only. Nothing here is meant for public npm publishing; version bumps and changesets exist for your own releases and deployment discipline.
+Private internal monorepo for the TruthSentry program. It brings together a Next.js web surface, an API layer built with tRPC, Prisma talking to PostgreSQL on Supabase, and Resend for transactional email (account and system messages such as sign-in and notifications—keep bulk or campaign mail out of this codebase unless you intentionally add it). Shared UI lives in `packages/ui` (COSS-oriented primitives); tRPC routers, the Prisma schema and client, and email modules stay in their own packages so `apps/web` and `apps/api` remain orchestration-only. Nothing here is meant for public npm publishing; version bumps and changesets exist for your own releases and deployment discipline.
 
 ### Built With
 
@@ -48,7 +48,7 @@ docker --version
 
 ```sh
  git clone <PRIVATE_REPO_URL>
- cd Afalambe
+ cd truthsentry
 ```
 
 2. Install dependencies
@@ -82,23 +82,41 @@ docker --version
 
 Focused workflows:
 
+### Deploy web (Vercel)
+
+The web app is a Next.js monorepo package under `apps/web`. Vercel must treat that directory as the project root; do not use Framework Preset **Other** with Output Directory `public` (that causes `No Output Directory named "public"` after a successful turbo build).
+
+In the Vercel project **Settings → General**:
+
+| Setting | Value |
+|---------|--------|
+| **Root Directory** | `apps/web` |
+| **Framework Preset** | Next.js |
+| **Build Command** | leave default (uses `apps/web/vercel.json`) or empty |
+| **Output Directory** | leave **empty** (Next.js manages `.next`) |
+| **Install Command** | leave default (uses `apps/web/vercel.json`) |
+
+`apps/web/vercel.json` installs from the monorepo root and runs `pnpm turbo run build --filter=./apps/web` so workspace packages (`@truthsentry/ui`, `@truthsentry/trpc`, Prisma client, etc.) build correctly.
+
+The API (`apps/api`) is a separate Node service; deploy it on a host that runs long-lived processes (not this Vercel static/Next project).
+
 ## Project Structure
 
 ```text
-Afalambe/
+truthsentry/
 ├── apps/
-│   ├── web/                  # @afalambe/web
-│   └── api/                  # @afalambe/api
+│   ├── web/                  # @truthsentry/web
+│   └── api/                  # @truthsentry/api
 ├── packages/
-│   ├── ai/                   # @afalambe/ai
-│   ├── emails/               # @afalambe/emails
-│   ├── prisma/               # @afalambe/prisma
-│   ├── testing/              # @afalambe/testing
-│   ├── trpc/                 # @afalambe/trpc
-│   └── ui/                   # @afalambe/ui
+│   ├── ai/                   # @truthsentry/ai
+│   ├── emails/               # @truthsentry/emails
+│   ├── prisma/               # @truthsentry/prisma
+│   ├── testing/              # @truthsentry/testing
+│   ├── trpc/                 # @truthsentry/trpc
+│   └── ui/                   # @truthsentry/ui
 ├── configs/
-│   ├── eslint/               # @afalambe/configs-eslint
-│   └── typescript/           # @afalambe/configs-typescript
+│   ├── eslint/               # @truthsentry/configs-eslint
+│   └── typescript/           # @truthsentry/configs-typescript
 ├── docs/
 ├── specs/                    # Spec-driven product + feature specs (see specs/README.md)
 ├── package.json
@@ -111,15 +129,15 @@ Afalambe/
 Add to a specific workspace package:
 
 ```sh
-pnpm add <package-name> --filter @afalambe/web
-pnpm add <package-name> --filter @afalambe/api
-pnpm add <package-name> --filter @afalambe/ui
+pnpm add <package-name> --filter @truthsentry/web
+pnpm add <package-name> --filter @truthsentry/api
+pnpm add <package-name> --filter @truthsentry/ui
 ```
 
 Add a dev dependency to one package:
 
 ```sh
-pnpm add -D <package-name> --filter @afalambe/web
+pnpm add -D <package-name> --filter @truthsentry/web
 ```
 
 Add at root:
@@ -133,8 +151,8 @@ Use local workspace packages:
 ```json
 {
     "dependencies": {
-        "@afalambe/ui": "workspace:*",
-        "@afalambe/trpc": "workspace:*"
+        "@truthsentry/ui": "workspace:*",
+        "@truthsentry/trpc": "workspace:*"
     }
 }
 ```
@@ -150,8 +168,8 @@ pnpm build
 Build specific targets:
 
 ```sh
-pnpm build --filter @afalambe/web
-pnpm build --filter @afalambe/api
+pnpm build --filter @truthsentry/web
+pnpm build --filter @truthsentry/api
 ```
 
 Type-check:
@@ -185,15 +203,15 @@ Use application-specific Dockerfiles where available.
 Typical pattern:
 
 ```sh
-docker build -f apps/api/Dockerfile -t afalambe-api:latest .
-docker build -f apps/web/Dockerfile -t afalambe-web:latest .
+docker build -f apps/api/Dockerfile -t truthsentry-api:latest .
+docker build -f apps/web/Dockerfile -t truthsentry-web:latest .
 ```
 
 Run:
 
 ```sh
-docker run -p 3000:3000 --env-file .env.production afalambe-api:latest
-docker run -p 3000:3000 --env-file .env.production afalambe-web:latest
+docker run -p 3000:3000 --env-file .env.production truthsentry-api:latest
+docker run -p 3000:3000 --env-file .env.production truthsentry-web:latest
 ```
 
 ## Scripts Reference

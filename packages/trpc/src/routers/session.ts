@@ -18,7 +18,7 @@ export const sessionRouter = createTRPCRouter({
                 select: { id: true, email: true, role: true, emailVerifiedAt: true },
             });
             if (!user) {
-                throw new TRPCError({ code: 'UNAUTHORIZED', message: 'Session user missing.' });
+                throw new TRPCError({ code: 'UNAUTHORIZED', message: 'SESSION_USER_MISSING' });
             }
             return user;
         }),

@@ -10,6 +10,14 @@ export type ChatThread = {
     updatedLabel?: string;
 };
 
+export type ChatSidebarLabels = {
+    newChat: string;
+    searchPlaceholder: string;
+    expandSidebar: string;
+    collapseSidebar: string;
+    chatHistory: string;
+};
+
 export type ChatSidebarProps = {
     threads?: ChatThread[];
     onNewChat?: () => void;
@@ -17,6 +25,9 @@ export type ChatSidebarProps = {
     onToggleCollapse?: () => void;
     collapsed?: boolean;
     className?: string;
+    searchValue?: string;
+    onSearchChange?: (value: string) => void;
+    labels: ChatSidebarLabels;
     /** Primary sidebar utilities (clear history, theme, account, FAQ, sign out). Rendered above optional footer. */
     navigationFooter?: React.ReactNode;
     /** Optional small print or status below navigation. */
@@ -30,6 +41,9 @@ export function ChatSidebar({
     onToggleCollapse,
     collapsed = false,
     className,
+    searchValue,
+    onSearchChange,
+    labels,
     navigationFooter,
     footer,
 }: ChatSidebarProps): React.ReactElement {
@@ -47,7 +61,7 @@ export function ChatSidebar({
                         variant="ghost"
                         size="icon"
                         className="text-[var(--chat-sidebar-foreground)] hover:bg-[var(--chat-sidebar-item-hover)]"
-                        aria-label="Developper la barre laterale"
+                        aria-label={labels.expandSidebar}
                         onClick={onToggleCollapse}
                     >
                         <PanelLeftClose className="size-4 rotate-180" />
@@ -57,7 +71,7 @@ export function ChatSidebar({
                         variant="ghost"
                         size="icon"
                         className="text-[var(--chat-sidebar-foreground)] hover:bg-[var(--chat-sidebar-item-hover)]"
-                        aria-label="Nouveau chat"
+                        aria-label={labels.newChat}
                         onClick={onNewChat}
                     >
                         <Plus className="size-4" />
@@ -80,7 +94,7 @@ export function ChatSidebar({
                     variant="ghost"
                     size="icon"
                     className="shrink-0 text-[var(--chat-sidebar-muted)] hover:bg-[var(--chat-sidebar-item-hover)] hover:text-[var(--chat-sidebar-foreground)]"
-                    aria-label="Reduire la barre laterale"
+                    aria-label={labels.collapseSidebar}
                     onClick={onToggleCollapse}
                 >
                     <PanelLeftClose className="size-4" />
@@ -93,16 +107,22 @@ export function ChatSidebar({
                     onClick={onNewChat}
                 >
                     <Plus className="size-4 shrink-0 opacity-90" />
-                    Nouveau chat
+                    {labels.newChat}
                 </Button>
             </div>
             <div className="px-2 pb-2">
                 <div className="flex h-9 items-center gap-2 rounded-[var(--chat-radius-md)] border border-[var(--chat-border-subtle)] bg-[var(--chat-surface-raised)] px-2 text-sm text-[var(--chat-sidebar-muted)]">
                     <Search className="size-4 shrink-0 opacity-70" aria-hidden />
-                    <span className="truncate">Rechercher des chats</span>
+                    <input
+                        type="text"
+                        value={searchValue ?? ''}
+                        onChange={(e) => onSearchChange?.(e.target.value)}
+                        placeholder={labels.searchPlaceholder}
+                        className="min-w-0 flex-1 truncate bg-transparent outline-none placeholder:text-[var(--chat-sidebar-muted)]"
+                    />
                 </div>
             </div>
-            <nav className="min-h-0 flex-1 overflow-y-auto px-2 pb-2" aria-label="Historique des chats">
+            <nav className="min-h-0 flex-1 overflow-y-auto px-2 pb-2" aria-label={labels.chatHistory}>
                 <ul className="flex flex-col gap-0.5">
                     {threads.map((t) => (
                         <li key={t.id}>

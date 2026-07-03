@@ -1,5 +1,7 @@
 # Spec: Resend email implementation
 
+> **Superseded for detail by:** [feat-0006](./features/feat-0006-email/PRODUCT.md). **Locale policy below is stale:** product uses **ar/en** (default `ar` via `x-locale`), not `fr`/`en` default `en`. Claim templates are still French-only in code — see feat-0006 gaps.
+
 ## Objective
 
 Implement production transactional email delivery with Resend across auth and chat lifecycle events, with idempotency, observability, and safe failure handling.

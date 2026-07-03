@@ -77,44 +77,50 @@ export function getEmailProvider(): string {
     return 'resend';
 }
 
-export async function sendVerifyEmail(args: CommonSendArgs & { otpCode: string }): Promise<SendEmailResult> {
-    return sendEmail({
-        to: args.to,
-        idempotencyKey: args.idempotencyKey,
-        subject: verifyEmailSubject(),
-        html: verifyEmailHtml({ otpCode: args.otpCode }),
-        text: verifyEmailText({ otpCode: args.otpCode }),
-    });
-}
-
-export async function sendPasswordResetEmail(
-    args: CommonSendArgs & { resetUrl: string },
+export async function sendVerifyEmail(
+    args: CommonSendArgs & { otpCode: string; locale?: string },
 ): Promise<SendEmailResult> {
     return sendEmail({
         to: args.to,
         idempotencyKey: args.idempotencyKey,
-        subject: passwordResetSubject(),
-        html: passwordResetHtml({ resetUrl: args.resetUrl }),
-        text: passwordResetText({ resetUrl: args.resetUrl }),
+        subject: verifyEmailSubject(args.locale),
+        html: verifyEmailHtml({ otpCode: args.otpCode, locale: args.locale }),
+        text: verifyEmailText({ otpCode: args.otpCode, locale: args.locale }),
     });
 }
 
-export async function sendClaimQueuedEmail(args: CommonSendArgs & { claimId: string }): Promise<SendEmailResult> {
+export async function sendPasswordResetEmail(
+    args: CommonSendArgs & { resetUrl: string; locale?: string },
+): Promise<SendEmailResult> {
     return sendEmail({
         to: args.to,
         idempotencyKey: args.idempotencyKey,
-        subject: claimQueuedSubject(),
-        html: claimQueuedHtml({ claimId: args.claimId }),
-        text: claimQueuedText({ claimId: args.claimId }),
+        subject: passwordResetSubject(args.locale),
+        html: passwordResetHtml({ resetUrl: args.resetUrl, locale: args.locale }),
+        text: passwordResetText({ resetUrl: args.resetUrl, locale: args.locale }),
     });
 }
 
-export async function sendClaimResolvedEmail(args: CommonSendArgs & { claimId: string }): Promise<SendEmailResult> {
+export async function sendClaimQueuedEmail(
+    args: CommonSendArgs & { claimId: string; locale?: string },
+): Promise<SendEmailResult> {
     return sendEmail({
         to: args.to,
         idempotencyKey: args.idempotencyKey,
-        subject: claimResolvedSubject(),
-        html: claimResolvedHtml({ claimId: args.claimId }),
-        text: claimResolvedText({ claimId: args.claimId }),
+        subject: claimQueuedSubject(args.locale),
+        html: claimQueuedHtml({ claimId: args.claimId, locale: args.locale }),
+        text: claimQueuedText({ claimId: args.claimId, locale: args.locale }),
+    });
+}
+
+export async function sendClaimResolvedEmail(
+    args: CommonSendArgs & { claimId: string; locale?: string },
+): Promise<SendEmailResult> {
+    return sendEmail({
+        to: args.to,
+        idempotencyKey: args.idempotencyKey,
+        subject: claimResolvedSubject(args.locale),
+        html: claimResolvedHtml({ claimId: args.claimId, locale: args.locale }),
+        text: claimResolvedText({ claimId: args.claimId, locale: args.locale }),
     });
 }

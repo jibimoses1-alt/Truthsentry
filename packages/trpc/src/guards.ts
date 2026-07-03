@@ -7,6 +7,6 @@ export async function requireVerifiedEmail(ctx: TrpcContext): Promise<void> {
         select: { emailVerifiedAt: true },
     });
     if (!user?.emailVerifiedAt) {
-        throw new TRPCError({ code: 'FORBIDDEN', message: 'Verifiez votre e-mail avant d’utiliser le chat.' });
+        throw new TRPCError({ code: 'FORBIDDEN', message: 'AUTH_EMAIL_NOT_VERIFIED' });
     }
 }

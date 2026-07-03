@@ -19,6 +19,43 @@ enum ClaimStatus {
   FAILED
 }
 
+enum FactCheckStatus {
+  PENDING
+  VERIFIED
+  DEBUNKED
+  MISLEADING
+  PARTIALLY_TRUE
+}
+
+enum SourceType {
+  POLITICIAN
+  MEDIA
+  SOCIAL_MEDIA
+  BLOG
+  NGO
+  CITIZEN
+}
+
+enum MediaType {
+  TEXT
+  IMAGE
+  VIDEO
+  AUDIO
+  TEXT_IMAGE
+  TEXT_VIDEO
+  TEXT_AUDIO
+}
+
+enum TopicCategory {
+  POLITICS
+  HEALTH
+  FINANCE
+  TECH
+  SECURITY
+  EDUCATION
+  ENVIRONMENT
+}
+
 enum MessageRole {
   USER
   ASSISTANT
@@ -38,6 +75,31 @@ model User {
   emailVerificationTokens EmailVerificationToken[]
   passwordResetTokens     PasswordResetToken[]
   emailDeliveries         EmailDelivery[]
+  attribution             UserAttribution?
+}
+
+model UserAttribution {
+  id           String   @id @default(cuid())
+  userId       String   @unique
+  utmSource    String?
+  utmMedium    String?
+  utmCampaign  String?
+  campaignSlug String?
+  landingPath  String?
+  createdAt    DateTime @default(now())
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Campaign {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  targetPath  String   @default("/ar/sign-up")
+  utmSource   String?
+  utmMedium   String?
+  utmCampaign String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model Session {
@@ -53,17 +115,36 @@ model Session {
 }
 
 model Claim {
-  id              String         @id @default(cuid())
+  id              String          @id @default(cuid())
   title           String?
-  status          ClaimStatus    @default(OPEN)
+  status          ClaimStatus     @default(OPEN)
+
+  claimText       String?
+  claimLanguage   String          @default("ar")
+  claimDate       DateTime?
+  sourceName      String?
+  sourceType      SourceType?
+  sourceUrl       String?
+  mediaType       MediaType       @default(TEXT)
+  topicCategory   TopicCategory?
+  location        String?
+  platform        String?
+
+  factCheckText   String?
+  factCheckStatus FactCheckStatus @default(PENDING)
+  factCheckDate   DateTime?
+
   createdByUserId String
-  createdAt       DateTime       @default(now())
-  updatedAt       DateTime       @updatedAt
-  user            User           @relation(fields: [createdByUserId], references: [id], onDelete: Cascade)
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+  user            User            @relation(fields: [createdByUserId], references: [id], onDelete: Cascade)
   messages        ClaimMessage[]
   emailDeliveries EmailDelivery[]
 
   @@index([createdByUserId, updatedAt])
+  @@index([factCheckStatus, createdAt])
+  @@index([topicCategory, createdAt])
+  @@index([platform, createdAt])
 }
 
 model ClaimMessage {

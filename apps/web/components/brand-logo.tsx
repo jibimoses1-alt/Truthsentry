@@ -1,21 +1,17 @@
 import Image from 'next/image'
 import type { ReactElement } from 'react'
 
-import { cn } from '@afalambe/ui/lib/utils'
-import { siteLogoDarkPath, siteLogoPath, siteName } from '@/lib/site'
+import { cn } from '@truthsentry/ui/lib/utils'
+import { siteLogoOnDarkPath, siteLogoPath, siteName } from '@/lib/site'
 
 export type BrandLogoProps = {
     className?: string
-    /** Width in CSS pixels passed to `next/image`. */
     width?: number
-    /** Height in CSS pixels passed to `next/image`. */
     height?: number
     priority?: boolean
 }
 
-/**
- * Horizontal Afalambe wordmark from `public/@afalambe-logo.png`.
- */
+/** Horizontal TruthSentry wordmark (`truthsentry.png` / `truthsentry-white.png`). */
 export function BrandLogo({
     className,
     width = 200,
@@ -38,7 +34,7 @@ export function BrandLogo({
                 priority={priority}
             />
             <Image
-                src={siteLogoDarkPath}
+                src={siteLogoOnDarkPath}
                 alt={siteName}
                 width={width}
                 height={height}

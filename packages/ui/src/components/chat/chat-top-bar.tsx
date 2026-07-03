@@ -1,6 +1,7 @@
 import type * as React from 'react'
 import { Bot, ChevronDown, MoreHorizontal } from 'lucide-react'
 
+import { ThemeWordmark } from '../brand/theme-wordmark'
 import { Button } from '../ui/button'
 import { cn } from '../../lib/utils'
 
@@ -9,7 +10,7 @@ export type ChatTopBarProps = {
     subtitle?: string
     /** Optional wordmark or icon URL (served from app `public/`). */
     brandLogoSrc?: string
-    /** Dark-mode wordmark; paired with `brandLogoSrc` for theme swap. */
+    /** White wordmark for dark backgrounds; paired with `brandLogoSrc` for theme swap. */
     brandLogoDarkSrc?: string
     brandLogoAlt?: string
     className?: string
@@ -41,24 +42,14 @@ export function ChatTopBar({
                 >
                     {brandLogoSrc ? (
                         brandLogoDarkSrc ? (
-                            <>
-                                <img
-                                    src={brandLogoSrc}
-                                    alt={brandLogoAlt ?? ''}
-                                    width={112}
-                                    height={28}
-                                    className="h-7 w-auto max-w-[7rem] shrink-0 object-contain object-left dark:hidden sm:max-w-[9rem]"
-                                    decoding="async"
-                                />
-                                <img
-                                    src={brandLogoDarkSrc}
-                                    alt={brandLogoAlt ?? ''}
-                                    width={112}
-                                    height={28}
-                                    className="hidden h-7 w-auto max-w-[7rem] shrink-0 object-contain object-left dark:block sm:max-w-[9rem]"
-                                    decoding="async"
-                                />
-                            </>
+                            <ThemeWordmark
+                                lightSrc={brandLogoSrc}
+                                darkSrc={brandLogoDarkSrc}
+                                alt={brandLogoAlt ?? ''}
+                                width={112}
+                                height={28}
+                                imgClassName="h-7 max-w-[7rem] shrink-0 sm:max-w-[9rem]"
+                            />
                         ) : (
                             <img
                                 src={brandLogoSrc}

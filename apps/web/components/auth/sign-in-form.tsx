@@ -2,87 +2,89 @@
 
 import {
     useCallback,
+    useMemo,
     useState,
     type FormEvent,
     type ReactElement,
 } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 import { z } from 'zod';
-import { Button } from '@afalambe/ui/components/button';
-import { Field, FieldError, FieldLabel } from '@afalambe/ui/components/field';
-import { Input } from '@afalambe/ui/components/input';
+import { Button } from '@truthsentry/ui/components/button';
+import { Field, FieldError, FieldLabel } from '@truthsentry/ui/components/field';
+import { Input } from '@truthsentry/ui/components/input';
 import { PasswordInputWithToggle } from '@/components/auth/password-input-with-toggle';
-import { notifyApiError } from '@/lib/api-toast';
+import { useRouter, Link } from '@/i18n/navigation';
+import { useApiToast } from '@/hooks/use-api-toast';
 import { trpc } from '@/lib/trpc';
-
-const signInSchema = z.object({
-    email: z
-        .string()
-        .min(1, "L'e-mail est requis")
-        .email('Saisissez une adresse e-mail valide'),
-    password: z.string().min(1, 'Le mot de passe est requis'),
-});
+import { resolveSafeRedirectPath } from '@/lib/safe-redirect';
 
 type FieldErrors = Partial<Record<'email' | 'password', string>>;
 
 export type SignInFormProps = {
-    /** UTM / campaign params to forward when the backend is wired. */
     searchParams?: Record<string, string>;
 };
 
 export function SignInForm({ searchParams }: SignInFormProps): ReactElement {
+    const t = useTranslations('auth');
+    const tCommon = useTranslations('common');
+    const tVal = useTranslations('auth.validation');
     const router = useRouter();
+    const { notifyApiException } = useApiToast();
     const [errors, setErrors] = useState<FieldErrors>({});
     const login = trpc.auth.login.useMutation();
 
-    const handleSubmit = useCallback((e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setErrors({});
+    const signInSchema = useMemo(
+        () =>
+            z.object({
+                email: z.string().min(1, tVal('emailRequired')).email(tVal('emailInvalid')),
+                password: z.string().min(1, tVal('passwordRequired')),
+            }),
+        [tVal],
+    );
 
-        const formData = new FormData(e.currentTarget);
-        const result = signInSchema.safeParse({
-            email: formData.get('email'),
-            password: formData.get('password'),
-        });
+    const handleSubmit = useCallback(
+        (e: FormEvent<HTMLFormElement>) => {
+            e.preventDefault();
+            setErrors({});
 
-        if (!result.success) {
-            const fieldErrors: FieldErrors = {};
-            for (const issue of result.error.issues) {
-                const key = issue.path[0] as keyof FieldErrors;
-                if (key && !fieldErrors[key]) {
-                    fieldErrors[key] = issue.message;
+            const formData = new FormData(e.currentTarget);
+            const result = signInSchema.safeParse({
+                email: formData.get('email'),
+                password: formData.get('password'),
+            });
+
+            if (!result.success) {
+                const fieldErrors: FieldErrors = {};
+                for (const issue of result.error.issues) {
+                    const key = issue.path[0] as keyof FieldErrors;
+                    if (key && !fieldErrors[key]) {
+                        fieldErrors[key] = issue.message;
+                    }
                 }
+                setErrors(fieldErrors);
+                return;
             }
-            setErrors(fieldErrors);
-            return;
-        }
 
-        login.mutate(
-            {
-                email: result.data.email,
-                password: result.data.password,
-            },
-            {
-                onSuccess: () => {
-                    router.push('/chat');
+            login.mutate(
+                {
+                    email: result.data.email,
+                    password: result.data.password,
                 },
-                onError: (error) => {
-                    notifyApiError({
-                        title: 'Connexion impossible',
-                        description: error.message,
-                    });
+                {
+                    onSuccess: () => {
+                        router.push(resolveSafeRedirectPath(searchParams?.next));
+                    },
+                    onError: (error) => {
+                        notifyApiException(error, 'auth.signIn.failed');
+                    },
                 },
-            },
-        );
-    }, [login, router]);
+            );
+        },
+        [login, notifyApiException, router, searchParams?.next, signInSchema],
+    );
 
     return (
-        <form
-            onSubmit={handleSubmit}
-            noValidate
-            className="flex flex-col gap-5"
-        >
+        <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
             {searchParams
                 ? Object.entries(searchParams).map(([k, v]) => (
                       <input key={k} type="hidden" name={k} value={v} />
@@ -90,7 +92,7 @@ export function SignInForm({ searchParams }: SignInFormProps): ReactElement {
                 : null}
 
             <Field invalid={Boolean(errors.email)}>
-                <FieldLabel htmlFor="email">Email</FieldLabel>
+                <FieldLabel htmlFor="email">{tCommon('email')}</FieldLabel>
                 <Input
                     id="email"
                     name="email"
@@ -103,7 +105,7 @@ export function SignInForm({ searchParams }: SignInFormProps): ReactElement {
             </Field>
 
             <Field invalid={Boolean(errors.password)}>
-                <FieldLabel htmlFor="password">Password</FieldLabel>
+                <FieldLabel htmlFor="password">{tCommon('password')}</FieldLabel>
                 <PasswordInputWithToggle
                     id="password"
                     name="password"
@@ -111,18 +113,16 @@ export function SignInForm({ searchParams }: SignInFormProps): ReactElement {
                     required
                     aria-invalid={Boolean(errors.password) || undefined}
                 />
-                {errors.password ? (
-                    <FieldError>{errors.password}</FieldError>
-                ) : null}
-                <div className="pt-1 text-right text-xs">
+                {errors.password ? <FieldError>{errors.password}</FieldError> : null}
+                <div className="pt-1 text-end text-xs">
                     <Link href="/forgot-password" className="text-[var(--lp-accent)] hover:underline">
-                        Mot de passe oublié ?
+                        {t('signIn.forgotPassword')}
                     </Link>
                 </div>
             </Field>
 
             <Button type="submit" loading={login.isPending} className="mt-1 w-full">
-                Se connecter
+                {t('signIn.submit')}
             </Button>
         </form>
     );

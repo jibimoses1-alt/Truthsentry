@@ -5,6 +5,7 @@ import { appRouter, type TrpcContext } from './index';
 test('health.ping returns ok', async () => {
     const ctx = {
         prisma: {} as TrpcContext['prisma'],
+        uiLocale: 'ar' as const,
         sessionUser: null,
         setSessionCookie: () => undefined,
         clearSessionCookie: () => undefined,
@@ -16,7 +17,16 @@ test('health.ping returns ok', async () => {
         sendPasswordResetEmail: async () => ({ ok: true, providerMessageId: 'msg_2' }),
         sendClaimQueuedEmail: async () => ({ ok: true, providerMessageId: 'msg_3' }),
         sendClaimResolvedEmail: async () => ({ ok: true, providerMessageId: 'msg_4' }),
-        createSignedUploadUrl: async () => ({ uploadPath: '', uploadUrl: 'https://example.com/upload' }),
+        createSignedUploadUrl: async () => ({
+            uploadPath: 'claims/test/file.png',
+            uploadUrl: 'https://example.com/upload',
+            readUrl: 'https://example.com/read',
+        }),
+        createSignedReadUrl: async () => 'https://example.com/read',
+        chatUploadLimits: {
+            maxBytes: 5_242_880,
+            allowedMimeTypes: ['image/png', 'image/jpeg', 'image/webp'],
+        },
         generateAssistantText: async () => 'ok',
     } satisfies TrpcContext;
 

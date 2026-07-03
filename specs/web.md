@@ -1,5 +1,7 @@
 # Spec: Web application (authenticated product)
 
+> **Superseded for detail by:** [feat-0010](./features/feat-0010-chat-threads/PRODUCT.md)–[feat-0014](./features/feat-0014-chat-outbox/PRODUCT.md), [feat-0007](./features/feat-0007-i18n/PRODUCT.md), [feat-0022](./features/feat-0022-ui-design-system/PRODUCT.md), [feat-0024](./features/feat-0024-client-errors-toasts/PRODUCT.md). This file remains a vertical summary.
+
 ## Problem
 
 Signed-in users need a **reliable web chat** to submit claims (including **Fula / Peul**), read AI-assisted replies or clear status when the system cannot verify, and see history. **Admins** need a separate surface to work the **human review queue**. All flows must remain understandable on **small screens** and in **low-connectivity** conditions.
@@ -60,7 +62,7 @@ Signed-in users need a **reliable web chat** to submit claims (including **Fula 
 ## Architecture impact
 
 - **App**: `apps/web` App Router; server components for shell where possible; tRPC React Query client for mutations/queries.
-- **Packages**: `@afalambe/ui`, `@afalambe/trpc` types once routers exist.
+- **Packages**: `@truthsentry/ui`, `@truthsentry/trpc` types once routers exist.
 
 ## API and data impact
 

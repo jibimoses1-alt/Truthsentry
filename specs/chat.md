@@ -1,5 +1,7 @@
 # Spec: `/chat` production functionality
 
+> **Superseded for detail by:** [feat-0010](./features/feat-0010-chat-threads/PRODUCT.md)–[feat-0015](./features/feat-0015-claims-ai/PRODUCT.md), [feat-0020](./features/feat-0020-audio-input/PRODUCT.md), [feat-0023](./features/feat-0023-ai-image-context/PRODUCT.md). Route is now `/[locale]/chat`. Streaming is **not** implemented (see feat-0011 gaps).
+
 ## Problem
 
 Current `/chat` is a preview UI with seeded sample threads and hardcoded assistant content. We need a real, authenticated chat experience backed by API + database, with no dummy conversation data in production flow.

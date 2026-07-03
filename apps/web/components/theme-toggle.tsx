@@ -1,7 +1,8 @@
 'use client';
 
-import { Button } from '@afalambe/ui/components/button';
-import { cn } from '@afalambe/ui/lib/utils';
+import { useTranslations } from 'next-intl';
+import { Button } from '@truthsentry/ui/components/button';
+import { cn } from '@truthsentry/ui/lib/utils';
 import { Moon, Sun } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { useLayoutEffect, useState, type ReactElement } from 'react';
@@ -14,6 +15,7 @@ export type ThemeToggleProps = {
  * Toggles between light and dark. Use after mount to avoid hydration mismatch.
  */
 export function ThemeToggle({ className }: ThemeToggleProps): ReactElement {
+    const t = useTranslations('common');
     const { resolvedTheme, setTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
 
@@ -44,7 +46,7 @@ export function ThemeToggle({ className }: ThemeToggleProps): ReactElement {
             variant="ghost"
             size="icon"
             className={className}
-            aria-label={isDark ? 'Passer en mode clair' : 'Passer en mode sombre'}
+            aria-label={isDark ? t('switchToLight') : t('switchToDark')}
             onClick={() => setTheme(isDark ? 'light' : 'dark')}
         >
             {isDark ? <Sun className="size-4" /> : <Moon className="size-4" />}

@@ -6,25 +6,23 @@ import {
     type MouseEvent,
     type ReactElement,
 } from 'react';
+import { useTranslations } from 'next-intl';
 import { Eye, EyeOff } from 'lucide-react';
-import { Button } from '@afalambe/ui/components/button';
+import { Button } from '@truthsentry/ui/components/button';
 import {
     InputGroup,
     InputGroupAddon,
     InputGroupInput,
-} from '@afalambe/ui/components/input-group';
+} from '@truthsentry/ui/components/input-group';
 
 export type PasswordInputWithToggleProps = {
     id: string;
     name?: string;
     autoComplete?: string;
     required?: boolean;
-    'aria-invalid'?: boolean | 'false' | 'true';
+    'aria-invalid'?: boolean | 'true' | 'false';
 };
 
-/**
- * Password field with a trailing control to show or hide the value.
- */
 export function PasswordInputWithToggle({
     id,
     name = 'password',
@@ -32,6 +30,7 @@ export function PasswordInputWithToggle({
     required,
     'aria-invalid': ariaInvalid,
 }: PasswordInputWithToggleProps): ReactElement {
+    const t = useTranslations('auth.passwordToggle');
     const [visible, setVisible] = useState(false);
 
     const handleToggleMouseDown = useCallback((e: MouseEvent) => {
@@ -54,7 +53,7 @@ export function PasswordInputWithToggle({
                     variant="ghost"
                     size="icon-sm"
                     className="shrink-0 text-muted-foreground hover:text-foreground"
-                    aria-label={visible ? 'Hide password' : 'Show password'}
+                    aria-label={visible ? t('hide') : t('show')}
                     aria-pressed={visible}
                     onMouseDown={handleToggleMouseDown}
                     onClick={() => setVisible((v) => !v)}

@@ -1,64 +1,63 @@
 /*
-  Afalambè — ChatGPT-style AI chat UI kit (token layer).
-  Scoped with [data-ui-kit="chatgpt"] so marketing and app shells can opt in.
-  Align hex values with Figma: ChatGPT UI Kit (Community) — see docs/design/chatgpt-ui-kit-figma-mapping.md
+  TruthSentry — ChatGPT-style AI chat UI kit (token layer).
+  Scoped with [data-ui-kit="chatgpt"]. Light by default; `.dark` overrides for dark mode.
 */
 
 [data-ui-kit='chatgpt'] {
     /* Canvas */
-    --chat-canvas: #212121;
-    --chat-surface-raised: #2f2f2f;
-    --chat-surface-overlay: #303030;
-    --chat-surface-hover: #3a3a3a;
-    --chat-border-subtle: rgb(255 255 255 / 0.1);
-    --chat-border-strong: rgb(255 255 255 / 0.14);
-    --chat-divider: rgb(255 255 255 / 0.08);
+    --chat-canvas: #f4f4f5;
+    --chat-surface-raised: #ffffff;
+    --chat-surface-overlay: #fafafa;
+    --chat-surface-hover: #ececec;
+    --chat-border-subtle: rgb(0 0 0 / 0.08);
+    --chat-border-strong: rgb(0 0 0 / 0.12);
+    --chat-divider: rgb(0 0 0 / 0.06);
 
     /* Sidebar */
-    --chat-sidebar-bg: #171717;
-    --chat-sidebar-item-hover: rgb(255 255 255 / 0.06);
-    --chat-sidebar-item-active: rgb(255 255 255 / 0.1);
-    --chat-sidebar-foreground: #ececec;
-    --chat-sidebar-muted: #9b9b9b;
+    --chat-sidebar-bg: #ebebeb;
+    --chat-sidebar-item-hover: rgb(0 0 0 / 0.05);
+    --chat-sidebar-item-active: rgb(0 0 0 / 0.08);
+    --chat-sidebar-foreground: #171717;
+    --chat-sidebar-muted: #525252;
     --chat-sidebar-width: 260px;
 
     /* Typography */
-    --chat-text-primary: #ececec;
-    --chat-text-secondary: #b4b4b4;
-    --chat-text-tertiary: #8e8e8e;
-    --chat-text-inverse: #0d0d0d;
+    --chat-text-primary: #171717;
+    --chat-text-secondary: #525252;
+    --chat-text-tertiary: #737373;
+    --chat-text-inverse: #fafafa;
 
     /* Messages */
     --chat-assistant-bg: transparent;
-    --chat-assistant-bubble: #2f2f2f;
-    --chat-user-bubble: #2f2f2f;
-    --chat-user-bubble-border: rgb(255 255 255 / 0.06);
-    --chat-system-fg: #8e8e8e;
+    --chat-assistant-bubble: #ffffff;
+    --chat-user-bubble: #e8e8e8;
+    --chat-user-bubble-border: rgb(0 0 0 / 0.06);
+    --chat-system-fg: #737373;
 
     /* Composer */
-    --chat-composer-bg: #303030;
-    --chat-composer-border: rgb(255 255 255 / 0.12);
-    --chat-composer-placeholder: #8e8e8e;
-    --chat-composer-ring: rgb(255 255 255 / 0.18);
+    --chat-composer-bg: #ffffff;
+    --chat-composer-border: rgb(0 0 0 / 0.1);
+    --chat-composer-placeholder: #737373;
+    --chat-composer-ring: rgb(66 172 181 / 0.35);
 
     /* Controls */
-    --chat-control-icon: #b4b4b4;
-    --chat-control-icon-hover: #ececec;
-    --chat-send-bg: #ececec;
-    --chat-send-fg: #0d0d0d;
-    --chat-send-disabled-bg: rgb(255 255 255 / 0.12);
-    --chat-send-disabled-fg: rgb(255 255 255 / 0.35);
-    --chat-accent-soft: rgb(16 163 127 / 0.15);
-    --chat-accent-strong: #10a37f;
+    --chat-control-icon: #525252;
+    --chat-control-icon-hover: #171717;
+    --chat-send-bg: #171717;
+    --chat-send-fg: #fafafa;
+    --chat-send-disabled-bg: rgb(0 0 0 / 0.08);
+    --chat-send-disabled-fg: rgb(0 0 0 / 0.35);
+    --chat-accent-soft: rgb(66 172 181 / 0.15);
+    --chat-accent-strong: #42acb5;
 
     /* Code */
-    --chat-code-bg: #0d0d0d;
-    --chat-code-border: rgb(255 255 255 / 0.1);
-    --chat-code-fg: #ececec;
+    --chat-code-bg: #f0f0f0;
+    --chat-code-border: rgb(0 0 0 / 0.1);
+    --chat-code-fg: #171717;
 
     /* Shadows */
-    --chat-shadow-popover: 0 8px 24px rgb(0 0 0 / 0.45);
-    --chat-shadow-composer: 0 -1px 0 rgb(255 255 255 / 0.06);
+    --chat-shadow-popover: 0 8px 24px rgb(0 0 0 / 0.12);
+    --chat-shadow-composer: 0 -1px 0 rgb(0 0 0 / 0.06);
 
     /* Radii */
     --chat-radius-sm: 6px;
@@ -71,6 +70,51 @@
     /* Motion */
     --chat-ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
     --chat-duration-fast: 150ms;
+}
+
+.dark [data-ui-kit='chatgpt'] {
+    --chat-canvas: #212121;
+    --chat-surface-raised: #2f2f2f;
+    --chat-surface-overlay: #303030;
+    --chat-surface-hover: #3a3a3a;
+    --chat-border-subtle: rgb(255 255 255 / 0.1);
+    --chat-border-strong: rgb(255 255 255 / 0.14);
+    --chat-divider: rgb(255 255 255 / 0.08);
+
+    --chat-sidebar-bg: #171717;
+    --chat-sidebar-item-hover: rgb(255 255 255 / 0.06);
+    --chat-sidebar-item-active: rgb(255 255 255 / 0.1);
+    --chat-sidebar-foreground: #ececec;
+    --chat-sidebar-muted: #9b9b9b;
+
+    --chat-text-primary: #ececec;
+    --chat-text-secondary: #b4b4b4;
+    --chat-text-tertiary: #8e8e8e;
+    --chat-text-inverse: #0d0d0d;
+
+    --chat-assistant-bubble: #2f2f2f;
+    --chat-user-bubble: #2f2f2f;
+    --chat-user-bubble-border: rgb(255 255 255 / 0.06);
+    --chat-system-fg: #8e8e8e;
+
+    --chat-composer-bg: #303030;
+    --chat-composer-border: rgb(255 255 255 / 0.12);
+    --chat-composer-placeholder: #8e8e8e;
+    --chat-composer-ring: rgb(255 255 255 / 0.18);
+
+    --chat-control-icon: #b4b4b4;
+    --chat-control-icon-hover: #ececec;
+    --chat-send-bg: #ececec;
+    --chat-send-fg: #0d0d0d;
+    --chat-send-disabled-bg: rgb(255 255 255 / 0.12);
+    --chat-send-disabled-fg: rgb(255 255 255 / 0.35);
+
+    --chat-code-bg: #0d0d0d;
+    --chat-code-border: rgb(255 255 255 / 0.1);
+    --chat-code-fg: #ececec;
+
+    --chat-shadow-popover: 0 8px 24px rgb(0 0 0 / 0.45);
+    --chat-shadow-composer: 0 -1px 0 rgb(255 255 255 / 0.06);
 }
 
 [data-ui-kit='chatgpt'] {

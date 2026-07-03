@@ -1,6 +1,7 @@
 import { ArrowUpRight } from 'lucide-react'
 import type * as React from 'react'
 
+import { ThemeWordmark } from '../brand/theme-wordmark'
 import { Button } from '../ui/button'
 import { cn } from '../../lib/utils'
 
@@ -14,7 +15,7 @@ export type LandingSiteHeaderProps = {
     brandHref?: string
     /** Optional horizontal logo (e.g. wordmark URL from `public/`). */
     brandLogoSrc?: string
-    /** Optional dark-mode wordmark; when set with `brandLogoSrc`, swaps by theme. */
+    /** White wordmark for dark backgrounds; paired with `brandLogoSrc` for theme swap. */
     brandLogoDarkSrc?: string
     brandLogoAlt?: string
     /** Extra controls before sign-in (e.g. theme toggle). */
@@ -23,12 +24,16 @@ export type LandingSiteHeaderProps = {
     signInHref: string
     primaryCtaHref: string
     primaryCtaLabel: string
+    signInLabel?: string
+    navAriaLabel?: string
+    chatHref?: string
+    chatLabel?: string
     className?: string
 }
 
 const defaultNav: LandingNavItem[] = [
-    { href: '#how', label: 'Fonctionnement' },
-    { href: '#why', label: 'Pourquoi Afalambè' },
+    { href: '#how', label: 'How it works' },
+    { href: '#why', label: 'Why TruthSentry' },
     { href: '#faq', label: 'FAQ' },
 ]
 
@@ -43,6 +48,10 @@ export function LandingSiteHeader({
     signInHref,
     primaryCtaHref,
     primaryCtaLabel,
+    signInLabel = 'Sign in',
+    navAriaLabel = 'Main navigation',
+    chatHref = '/chat',
+    chatLabel = 'Chat',
     className,
 }: LandingSiteHeaderProps): React.ReactElement {
     return (
@@ -60,24 +69,12 @@ export function LandingSiteHeader({
                     >
                         {brandLogoSrc ? (
                             brandLogoDarkSrc ? (
-                                <>
-                                    <img
-                                        src={brandLogoSrc}
-                                        alt={brandLogoAlt ?? brand}
-                                        width={160}
-                                        height={36}
-                                        className="h-8 w-auto max-w-[min(100%,11rem)] object-contain object-left dark:hidden sm:h-9 sm:max-w-[13rem]"
-                                        decoding="async"
-                                    />
-                                    <img
-                                        src={brandLogoDarkSrc}
-                                        alt={brandLogoAlt ?? brand}
-                                        width={160}
-                                        height={36}
-                                        className="hidden h-8 w-auto max-w-[min(100%,11rem)] object-contain object-left dark:block sm:h-9 sm:max-w-[13rem]"
-                                        decoding="async"
-                                    />
-                                </>
+                                <ThemeWordmark
+                                    lightSrc={brandLogoSrc}
+                                    darkSrc={brandLogoDarkSrc}
+                                    alt={brandLogoAlt ?? brand}
+                                    imgClassName="h-8 max-w-[min(100%,11rem)] sm:h-9 sm:max-w-[13rem]"
+                                />
                             ) : (
                                 <img
                                     src={brandLogoSrc}
@@ -94,7 +91,7 @@ export function LandingSiteHeader({
                     </a>
                     <nav
                         className="hidden min-w-0 items-center gap-4 md:flex lg:gap-5"
-                        aria-label="Navigation principale"
+                        aria-label={navAriaLabel}
                     >
                         {navItems.map((item) => (
                             <a
@@ -106,22 +103,22 @@ export function LandingSiteHeader({
                             </a>
                         ))}
                         <a
-                            href="/chat"
+                            href={chatHref}
                             className="shrink-0 text-sm font-medium text-[var(--lp-fg-muted)] no-underline transition-colors hover:text-[var(--lp-fg)]"
                         >
-                            Chat
+                            {chatLabel}
                         </a>
                     </nav>
                 </div>
                 <div className="flex shrink-0 items-center gap-2">
                     {headerActions}
                     <Button variant="ghost" size="sm" render={<a href={signInHref} />} className="hidden sm:inline-flex">
-                        Connexion
+                        {signInLabel}
                     </Button>
                     <Button
                         size="sm"
                         render={<a href={primaryCtaHref} />}
-                        className="border-none bg-[image:var(--lp-cta-gradient)] text-white shadow-sm hover:bg-[image:var(--lp-cta-gradient-hover)]"
+                        className="landing-header-primary-btn rounded-full shadow-sm"
                     >
                         {primaryCtaLabel}
                         <ArrowUpRight className="size-4 opacity-90" />

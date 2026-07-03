@@ -1,4 +1,4 @@
-# Afalambè design system
+# TruthSentry design system
 
 This document describes the implementation that mirrors the **ChatGPT UI Kit (AI Chat, Community)** structure in Figma ([file `ruUg1KDBJspO8GtFCHowye`](https://www.figma.com/design/ruUg1KDBJspO8GtFCHowye/ChatGPT-UI-Kit--AI-Chat--Community-)). The canvas is not readable from this repository, so **hex values are approximations**. Use the Figma inspect panel to replace token values in source when you lock final brand decisions.
 
@@ -101,7 +101,7 @@ Verification is **email-only**. After registration the UI directs users to check
 
 ### Auth export
 
-`@afalambe/ui/auth` (from `packages/ui/package.json` export `"./auth"`) re-exports `AuthPageShell` and `AuthCardFooter`.
+`@truthsentry/ui/auth` (from `packages/ui/package.json` export `"./auth"`) re-exports `AuthPageShell` and `AuthCardFooter`.
 
 ## Buttons
 
@@ -125,7 +125,7 @@ Product buttons reuse [`Button`](../../packages/ui/src/components/ui/button.tsx)
 - [ ] Confirm accent colour (`--lp-accent`) on auth links matches the Figma auth palette.
 - [ ] Attach screenshots of final parity sign-off beside this file when approved.
 
-## Monorepo wiring (`apps/web` + `@afalambe/ui`)
+## Monorepo wiring (`apps/web` + `@truthsentry/ui`)
 
 - **Webpack** — [`apps/web/next.config.ts`](../../apps/web/next.config.ts) sets `resolve.alias['@']` to `[apps/web, packages/ui/src]` so `@/` imports resolve when Next transpiles UI.
 - **TypeScript** — [`apps/web/tsconfig.json`](../../apps/web/tsconfig.json) maps `@/*` to `["./*", "../../packages/ui/src/*"]` so `next build` typechecking finds `@/lib/utils` inside UI.

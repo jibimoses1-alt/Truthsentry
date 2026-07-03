@@ -1,16 +1,18 @@
-# Program specification: Afalambè (Safe Voices)
+# Program specification: TruthSentry
+
+> **Spec status:** For feature-level behaviour and implementation detail, prefer [`features/README.md`](./features/README.md) (feat-0001 through feat-0026). This program doc is the **north star**; where it conflicts with feature specs on shipped behaviour, **feature specs win** until this file is amended.
 
 ## Status
 
-Living document. Last aligned to MVP target **v0.50.00** (monorepo with web + API).
+Living document. Last aligned to MVP target **v0.50.00** (monorepo with web + API). **UI locales:** Modern Standard Arabic + English (`ar` / `en`) per [feat-0007](./features/feat-0007-i18n/PRODUCT.md) — not French/English as originally drafted below.
 
 ## Problem
 
-People need a trustworthy way to **submit claims** (including in **Fula / Peul**), receive **AI-assisted verification** when the system can match or answer with confidence, and have **unmatched or low-confidence** items **stored for human review** without losing context. Access is primarily through **links** shared via **WhatsApp** or other campaign channels, plus a **web** experience for chat and account management.
+People need a trustworthy way to **submit claims** in **Arabic or English** (claim body may use extended Arabic script), receive **AI-assisted verification** when the system can answer with confidence, and have **low-confidence** items **stored for human review** without losing context. Access is primarily through **links** shared via **WhatsApp** or other campaign channels, plus a **web** experience for chat and account management.
 
 ## Stakeholders
 
-- **End users**: claimants using mobile web from shared links; may have low literacy in French/English; primary languages include Fula and Peul.
+- **End users**: claimants using mobile web from shared links; primary UI locales are Arabic (MSA) and English per feat-0007.
 - **Reviewers / admins**: staff who resolve unmatched claims and correct the system over time.
 - **Operators**: people configuring campaigns, domains, email, and hosting (not hard-coded into application specs).
 
@@ -67,7 +69,7 @@ People need a trustworthy way to **submit claims** (including in **Fula / Peul**
 
 ### FR-6 Internationalisation
 
-- UI shell supports **French and English** at minimum for chrome; **claim body** must accept Fula/Peul Unicode without corruption; language detection optional, not required for MVP if user selects locale.
+- UI shell supports **Arabic (MSA, default) and English** per [feat-0007](./features/feat-0007-i18n/PRODUCT.md); **claim body** must accept Unicode without corruption; language detection optional (`claimLanguage` ar/en).
 
 ## Non-functional requirements
 
